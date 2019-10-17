@@ -1,0 +1,417 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+	<h1 class="heading-xlarge" style="margin-bottom:15px;">{{ title }}</h1><br />
+
+	<div class="grid-row">
+		<section class="column-full">
+			
+			<form action="/process-project-form" method="post">
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">About the project</h2><br />
+			
+			<div class="container">
+			<div class="left30"><label for="project_id">Project id:&nbsp; &nbsp;</label></div>
+			{% if data.project_id %}
+			<div class="right70"><input id="project_id" type="text" name="project_id" class="form_input" placeholder="Project ID" value= "{{data.project_id | safe}}" required /></div>
+			{% else %}
+			<div class="right70"><input id="project_id" type="text" name="project_id" class="form_input" placeholder="Project ID" value= "{{next_id}}" required /></div>
+			{% endif %}
+			
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="project_name">Project name:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="project_name" type="text" name="project_name" class="form_input" placeholder="Project name" value= "{{data.project_name | safe}}" required /></div>
+			<div class="clear"></div>
+			</div>
+				
+			<div class="container">
+			<div class="left30"><label for="project_desc">Short description:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="project_desc" type="text" maxlength="250" name="project_desc" class="form_input" placeholder="Short description" value= "{{data.short_desc | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+
+			<br /><br />
+			
+			<div class="container">
+			<div class="left30"><label for="phase">Phase:&nbsp; &nbsp;</label></div>								
+			<div class="right70">
+				<select name="phase" class="form_input">
+					<option value="backlog" 	{% if data.phase == 'backlog' %}	selected {% endif %}>Backlog</option>
+					<option value="discovery" 	{% if data.phase == 'discovery' %}	selected {% endif %}>Discovery</option>
+					<option value="alpha" 		{% if data.phase == 'alpha' %}		selected {% endif %}>Alpha</option>
+					<option value="beta" 		{% if data.phase == 'beta' %}		selected {% endif %}>Beta</option>
+					<option value="live" 		{% if data.phase == 'live' %}		selected {% endif %}>Live</option>
+					<option value="completed" 	{% if data.phase == 'completed' %}	selected {% endif %}>Archived</option>
+				</select>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="onhold">Is the project on hold or blocked?&nbsp; &nbsp;</label></div>								
+			<div class="right70">
+				<select name="onhold" class="form_input">
+					<option value="n" 	{% if data.onhold == 'n' %}	selected {% endif %}>No</option>
+					<option value="y" 	{% if data.onhold == 'y' %}	selected {% endif %}>On hold</option>
+					<option value="b" 	{% if data.onhold == 'b' %}	selected {% endif %}>Blocked</option>
+				</select>
+			<div class="clear"></div>
+			</div>
+			
+			
+			<div class="container">
+			<div class="left30"><label for="category">Category:&nbsp; &nbsp;</label></div>						
+			<div class="right70">
+				<select name="category" class="form_input">
+					<option value="data" {% if data.category == 'data' %}	selected {% endif %}>Data driven FSA</option>
+					<option value="cap"  {% if data.category == 'cap' %}	selected {% endif %}>Developing out digital capability</option>
+					<option value="ser"  {% if data.category == 'ser' %}	selected {% endif %}>Digital services development and support</option>
+					<option value="it"   {% if data.category == 'it' %}		selected {% endif %}>Evergreen IT</option>
+					<option value="res"  {% if data.category == 'res' %}	selected {% endif %}>Protecting data and business resilience</option>
+					<option value="sm"   {% if data.category == 'sm' %}		selected {% endif %}>Service management improvements</option>
+				</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			
+			<div class="container">
+			<div class="left30"><label for="subcat">Sub-category:&nbsp; &nbsp;</label></div>					
+			<div class="right70"><select name="subcat" class="form_input">
+				<option value="0"  {% if data.subcat == '0' %}		selected {% endif %}>None</option>
+				<option value="1"  {% if data.subcat == '1' %}		selected {% endif %}>Surveillance</option>
+				<option value="2"  {% if data.subcat == '2' %}		selected {% endif %}>Developing data services</option>
+				<option value="3"  {% if data.subcat == '3' %}		selected {% endif %}>Managing data services</option>
+				<option value="4"  {% if data.subcat == '4' %}		selected {% endif %}>New discoveries</option>
+				<option value="5"  {% if data.subcat == '5' %}		selected {% endif %}>Iterating digital services</option>
+				<option value="6"  {% if data.subcat == '6' %}		selected {% endif %}>Register a Food Business</option>
+				<option value="7"  {% if data.subcat == '7' %}		selected {% endif %}>EU Exit</option>
+				<option value="8"  {% if data.subcat == '8' %}		selected {% endif %}>Modernising legacy apps</option>
+				<option value="9"  {% if data.subcat == '9' %}		selected {% endif %}>Operating System and environment upgrades</option>
+				<option value="10" {% if data.subcat == '10' %}		selected {% endif %}>API strategy and implementation</option>
+				<option value="11" {% if data.subcat == '11' %}		selected {% endif %}>Cloud migration</option>
+				<option value="12" {% if data.subcat == '12' %}		selected {% endif %}>Decommissioning legacy</option>
+				<option value="13" {% if data.subcat == '13' %}		selected {% endif %}>Embedding security by design</option>
+				<option value="14" {% if data.subcat == '14' %}		selected {% endif %}>NFCU support</option>
+				<option value="15" {% if data.subcat == '15' %}		selected {% endif %}>Upgrade Service Now and Automation</option>
+				<option value="16" {% if data.subcat == '16' %}		selected {% endif %}>Contract management</option>
+				<option value="17" {% if data.subcat == '17' %}		selected {% endif %}>Integration - sign-on, password reset etc.</option>
+				<option value="18" {% if data.subcat == '18' %}		selected {% endif %}>Knowledge management and documentation</option>
+				<option value="19" {% if data.subcat == '19' %}		selected {% endif %}>Unified view</option>
+				<option value="20" {% if data.subcat == '20' %}		selected {% endif %}>Export health certification</option>
+				<option value="21" {% if data.subcat == '21' %}		selected {% endif %}>Implementing DDaT professions</option>
+				<option value="22" {% if data.subcat == '22' %}		selected {% endif %}>Implementing service assesments</option>
+				<option value="23" {% if data.subcat == '23' %}		selected {% endif %}>Coaching senior leaders in Digital</option>
+				<option value="24" {% if data.subcat == '24' %}		selected {% endif %}>Development of digital workplace</option>
+				<option value="25" {% if data.subcat == '25' %}		selected {% endif %}>Community of digital superusers</option>
+				<option value="26" {% if data.subcat == '26' %}		selected {% endif %}>Digital skills roadshows</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			
+			<div class="container">
+			<div class="left30"><label for="rag">RAG:&nbsp; &nbsp;</label></div>									
+			<div class="right70">
+				<select name="rag" class="form_input">
+					<option value="red" {% if data.rag == 'red' %}		selected {% endif %}>Red</option>
+					<option value="amb" {% if data.rag == 'amb' %}		selected {% endif %}>Amber</option>
+					<option value="gre" {% if data.rag == 'gre' %}		selected {% endif %}>Green</option>
+					<option value="nor" {% if data.rag == 'nor' %}		selected {% endif %}>Undecided</option>
+				</select></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="rels">Related projects:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="rels" type="text" maxlength="500" name="rels" class="form_input" placeholder="ODD1900000, ODD1900001,...." value= "{{data.rels}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="deps">Dependencies:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="deps" type="text" maxlength="500" name="deps" class="form_input" placeholder="ODD1900000, ODD1900001,...." value= "{{data.dependencies}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<br /><br />
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Key dates</h2><br />
+			
+			<div class="container">
+			<div class="left30"><label for="start_date_day">Intended start date:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			
+			<input type="number" id = "start_date_day" name="start_date_day" class="form_input" style="width:10%;" placeholder="DD"  {% if dates[0] != '00' %}value= "{{dates[0] | safe}}" {% endif %} />
+			<input type="number" id = "start_date_month" name="start_date_month" class="form_input" style="width:10%;" placeholder="MM"  {% if dates[1] != '00' %}value= "{{dates[1]  | safe}}" {% endif %} />
+			<input type="number" id = "start_date_year" name="start_date_year" class="form_input" style="width:20%;" placeholder="YYYY"  {% if dates[2] != '0000' %}value= "{{dates[2]  | safe}}" {% endif %} />
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="actstart_day">Actual start date:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			
+			<input type="number" id = "actstart_day" name="actstart_day" class="form_input" style="width:10%;" placeholder="DD"  {% if dates[3] != '00' %}value= "{{dates[3] | safe}}" {% endif %}  />
+			<input type="number" id = "actstart_month" name="actstart_month" class="form_input" style="width:10%;" placeholder="MM" {% if dates[4] != '00' %} value= "{{dates[4]  | safe}}"{% endif %}  />
+			<input type="number" id = "actstart_year" name="actstart_year" class="form_input" style="width:20%;" placeholder="YYYY" {% if dates[5] != '0000' %} value= "{{dates[5]  | safe}}" {% endif %} />
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="expend_day">Expected end date:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			
+			<input type="number" id = "expend_day" name="expend_day" class="form_input" style="width:10%;" placeholder="DD" {% if dates[6] != '00' %} value= "{{dates[6]  | safe}}" {% endif %} />
+			<input type="number" id = "expend_month" name="expend_month" class="form_input" style="width:10%;" placeholder="MM" {% if dates[7] != '00' %} value= "{{dates[7]  | safe}}"  {% endif %}/>
+			<input type="number" id = "expend_year" name="expend_year" class="form_input" style="width:20%;" placeholder="YYYY"  {% if dates[8] != '0000' %}value= "{{dates[8]  | safe}}" {% endif %} />
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="hardend_day">Hard deadline:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			
+			<input type="number" id = "actstart_day" name="hardend_day" class="form_input" style="width:10%;" placeholder="DD"  {% if dates[9] != '00' %}value= "{{dates[9]  | safe}}" {% endif %} />
+			<input type="number" id = "actstart_month" name="hardend_month" class="form_input" style="width:10%;" placeholder="MM"  {% if dates[10] != '00' %}value= "{{dates[10]  | safe}}" {% endif %} />
+			<input type="number" id = "actstart_year" name="hardend_year" class="form_input" style="width:20%;" placeholder="YYYY"  {% if dates[11] != '0000' %}value= "{{dates[11]  | safe}}" {% endif %} />
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+
+			<br /><br />
+
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Update</h2>
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color:#53565A;">Enter your new update below. You can make changes as many times as you like on the same day by submitting a new update. This will overwrite any changes made earlier in the day. Updates can't be changed on a later date.<br /><br /></p>
+			
+			<div class="container">
+			<div class="left30"><label for="new_update">New update:&nbsp; &nbsp;</label><br /></div>
+			<div class="right70">
+			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" rows="4" placeholder="New update" /></textarea>
+			<p style="text-align:left; color:#53565A;">Max 1,000 characters (approx. 350 - 400 words).</p>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="update" style="color:#53565A;">Previous update:&nbsp; &nbsp;</label><br /></div>
+			<div class="right70">
+			<p style="color:#53565A;">{{ data.update | safe}}</p>
+			<input name="update" 			id="update"  			value= "{{ data.update | safe}}" 		hidden />
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Project leads</h2><br />
+			
+			<div class="container">
+			<div class="left30"><label for="oddlead">ODD lead:&nbsp; &nbsp;</label></div>				
+			<div class="right70"><input id="oddlead" type="text" name="oddlead" class="form_input" placeholder="ODD lead" value= "{{data.oddlead | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			
+			<div class="container">
+			<div class="left30"><label for="oddlead_email">ODD lead email:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="oddlead_email" type="email" name="oddlead_email" class="form_input" placeholder="ODD lead email" value= "{{data.oddlead_email | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="servicelead">Service lead:&nbsp; &nbsp;</label></div>		
+			<div class="right70"><input id="servicelead" type="text" name="servicelead" class="form_input" placeholder="Service lead" value= "{{data.servicelead | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="servicelead_email">Service lead email:&nbsp; &nbsp;</label></div>	
+			<div class="right70"><input id="servicelead_email" type="email" name="servicelead_email" class="form_input" placeholder="Service lead email" value= "{{data.servicelead_email | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="team">Project team:&nbsp; &nbsp;</label></div>
+			<div class="right70"><input id="team" type="text" name="team" class="form_input" placeholder="Team member 1, Team member 2..." value= "{{data.team | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Prioritisation</h2><br />
+						
+			<div class="container">
+			<div class="left30"><label for="priority">Priority score:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="priority" class="form_input">
+			<option value="0" selected>Priority score</option>
+			{% for i in ['20','19','18','17','16','15','14','13','12','11','10','09','08','07','06','05','04','03','02','01','0'] %}
+			<option value="{{ i }}" {% if data.priority_main == i %} selected {% endif %} >{{ i }}</option>
+			{% endfor %}
+			</select>
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<br />
+			
+			<div class="container">
+			<div class="left30"><label for="funded">Funded:&nbsp; &nbsp;</label></div>	
+			<div class="right70">
+			<select name="funded" class="form_input">
+			<option value="0" selected>Funded</option>
+			{% for i in [4,3,2,1,0] %}
+			<option value="{{ i }}" {% if data.funded == i %} selected {% endif %} >{{ i }}</option>
+			{% endfor %}
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="confidence">Confidence in delivery:&nbsp; &nbsp;</label></div>		
+			<div class="right70">
+			<select name="confidence" class="form_input">
+			<option value="0" selected>Confidence</option>
+			{% for i in [4,3,2,1,0] %}
+			<option value="{{ i }}" {% if data.confidence == i %} selected {% endif %}>{{ i }}</option>
+			{% endfor %}
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="priorities">Priorities impacted:&nbsp; &nbsp;</label></div>		
+			<div class="right70">
+			<select name="priorities" class="form_input">
+			<option value="0" selected>Priorities</option>
+			{% for i in [4,3,2,1,0] %}
+			<option value="{{ i }}" {% if data.priorities == i %} selected {% endif %}>{{ i }}</option>
+			{% endfor %}
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="benefits">Benefits:&nbsp; &nbsp;</label></div>		
+			<div class="right70">
+			<select name="benefits" class="form_input">
+			<option value="0" selected>Benefits</option>
+			{% for i in [4,3,2,1,0] %}
+			<option value="{{ i }}" {% if data.benefits == i %} selected {% endif %}>{{ i }}</option>
+			{% endfor %}
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="criticality">Criticality:&nbsp; &nbsp;</label></div>		
+			<div class="right70">
+			<select name="criticality" class="form_input">
+			<option value="0" selected>Criticality</option>
+			{% for i in [4,3,2,1,0] %}
+			<option value="{{ i }}" {% if data.criticality == i %} selected {% endif %} >{{ i }}</option>
+			{% endfor %}
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<h2 class="heading-medium" style="margin-bottom:0; margin-left:2%;">Budget</h2>
+			<span style="margin-left:2%; margin-bottom:10px; color:#53565A;">Please use numbers only, for example for £100k, please input 100000.</span><br /><br />
+			
+			<div class="container">
+			<div class="left30"><label for="budget">Budget:&nbsp; &nbsp;</label></div>				
+			<div class="right70"><input id="budget" maxlength="15" type="number" name="budget" class="form_input" placeholder="Budget" value= "{{data.budget}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="spent">Spent:&nbsp; &nbsp;</label></div>				
+			<div class="right70"><input id="spent" maxlength="15" type="number" name="spent" class="form_input" placeholder="Spent" value= "{{data.spent}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<br />
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Key documents</h2><br />
+			
+			<div class="container">
+			<div class="left30"><label for="docs_name1">Documents:&nbsp; &nbsp;</label></div>
+			<div class="left20">File name:</div>
+			<div class="equalsplit2">Sharepoint link:</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"></div>
+			<div class="left20"><input id="docs_name1" type="text" name="docs_name1" class="form_input" placeholder ="Document title" value="{{ docs[0] | safe}}" /></div>
+			<div class="equalsplit2"><input id="docs_link1" type="text" name="docs_link1" class="form_input" placeholder ="Link" value="{{ docs[1] }}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"></div>
+			<div class="left20"><input id="docs_name2" type="text" name="docs_name2" class="form_input" placeholder ="Document title" value="{{ docs[2] | safe}}" /></div>
+			<div class="equalsplit2"><input id="docs_link2" type="text" name="docs_link2" class="form_input" placeholder ="Link" value="{{ docs[3] | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"></div>
+			<div class="left20"><input id="docs_name3" type="text" name="docs_name3" class="form_input" placeholder ="Document title" value="{{ docs[4] | safe}}" /></div>
+			<div class="equalsplit2"><input id="docs_link3" type="text" name="docs_link3" class="form_input" placeholder ="Link" value="{{ docs[5] | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"></div>
+			<div class="left20"><input id="docs_name4" type="text" name="docs_name4" class="form_input" placeholder ="Document title" value="{{ docs[6] | safe}}" /></div>
+			<div class="equalsplit2"><input id="docs_link4" type="text" name="docs_link4" class="form_input" placeholder ="Link" value="{{ docs[7] | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			<br />
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Link to project channel</h2><br />
+			<div class="container">
+			<div class="left30"></label></div>
+			<div class="left20">Link name:</div>
+			<div class="equalsplit2">Link address:</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"></div>
+			<div class="left20"><input id="link_name" type="text" name="link_name" class="form_input" placeholder ="Link name" value="{{ link[0] | safe}}" /></div>
+			<div class="equalsplit2"><input id="link_address" type="text" name="link_address" class="form_input" placeholder = "Link address" value="{{ link[1] | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+					
+			
+			<input name="form_type" 		value="{{ form_type }}" 			hidden />
+			<br /><br />
+			
+			<input type="submit" value="{{ button }}" style="margin-left:2%;">
+
+			</form>
+		</section>
+	</div>
+</main>
+
+{% endblock %}

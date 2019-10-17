@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+	<p style="margin-top:30px;">
+	These are all the things we're doing. Order by: <a href="/"> theme</a>, <a href="/priority/"> priority</a>,  <a href="/rag/"> rag status</a> or <a href="/status/"> stage</a></p>
+	
+	<hr />
+	
+	<h2 class="heading-medium" style="margin-bottom:10px;">Projects</h2><br />
+	
+	<p><a href="/portfolio-add">Add project</a></p>
+	<p><a href="/completed">View completed projects</a></p>
+		
+	<h2 class="heading-medium" style="margin-bottom:10px;">Data</h2><br />
+	
+	<p><a href="/upload-test">Test bulk upload</a></p>
+	<p><a href="/upload">Bulk upload</a></p>
+	<p>Extract as csv</p>
+	
+	<h2 class="heading-medium" style="margin-bottom:10px;">Log out</h2><br />
+	<p><a href="/log-out">Log out</a></p>
+
+</main>
+
+{% endblock %}
