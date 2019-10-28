@@ -5,7 +5,10 @@ function currencyFormat(num) { return '£' + num.replace(/(\d)(?=(\d{3})+(?!\d))
 
 function project_view(req, res) {
 	var user = req.session.user;
+	var group = req.session.group;
 	var project_id = req.params.project_id;
+	
+	console.log(group);
 	
 	var selected_project = 'SELECT * from latest_projects where project_id = $1';
 	var project_updates = 'SELECT * from updates where project_id = $1 and update != $2 order by timestamp desc';
@@ -105,6 +108,7 @@ function project_view(req, res) {
 					
 						res.render('project', {
 							"user": user,
+							"group": group,
 							"data": project.rows[0],
 							"docs": docs,
 							"phases": config.phases,

@@ -173,13 +173,13 @@
 			{% endif %}
 			
 	
-			{% if (data.budget) and (user != 'supplier') %}
+			{% if (data.budget) and (group != '4') %}
 			<br /><h3 class="heading-small">Budget</h3>
 			
 			<strong>Allocated:</strong> {{ budget }} <br />
 			{% endif %}
 			
-			{% if (data.spent) and (user != 'supplier') %}
+			{% if (data.spent) and (group != '4') %}
 			<strong>Used:</strong> {{ spent }}
 			{% endif %}
 

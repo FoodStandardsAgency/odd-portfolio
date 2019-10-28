@@ -40,7 +40,7 @@ function nestedGroupBy(data, keys) {
 }
 
 // Redirect not logged in users to the login page
-function requireLogin (req, res, next) { console.log("checking login"); console.log(req.session.login); if (req.session.login == undefined) {console.log("in if"); req.session.destroy(); 
+function requireLogin (req, res, next) {console.log("Login"); console.log(req.session.user); console.log(req.session.group); if (req.session.login == undefined) {console.log("login undefined - redirecting"); req.session.destroy(); 
 res.redirect('/login');} else {next();}};
 
 
