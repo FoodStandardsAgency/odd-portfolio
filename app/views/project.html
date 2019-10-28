@@ -172,13 +172,14 @@
 			<br />
 			{% endif %}
 			
-			{% if data.budget %}
+	
+			{% if (data.budget) and (user != 'supplier') %}
 			<br /><h3 class="heading-small">Budget</h3>
 			
 			<strong>Allocated:</strong> {{ budget }} <br />
 			{% endif %}
 			
-			{% if data.spent %}
+			{% if (data.spent) and (user != 'supplier') %}
 			<strong>Used:</strong> {{ spent }}
 			{% endif %}
 
