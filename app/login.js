@@ -8,7 +8,7 @@ function login(req, res) {
 
 	// Calculate hash
 	const prov_hash = crypto.createHash('sha256').update(password).digest('hex').toUpperCase();
-
+		
 	// Define queries
 	var text = 'SELECT username, pass_hash from users where username = $1';
 	var values = [user];
