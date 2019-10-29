@@ -199,18 +199,7 @@ router.post('/upload', 		upload.single('file'), function (req, res) { bulk(req, 
 //-------------------------------------------------------------------
 // ADD/UPDATE PROJECTS - handle form submissions
 //-------------------------------------------------------------------
-router.post('/process-project-form', requireLogin, [
-	// Sanitize values
-	check('project_id').escape(), 
-	check('project_name').escape(),
-	check('project_desc').escape(),
-	check('update').escape(),
-	check('oddlead').escape(),
-	check('oddlead_email').escape(),
-	check('servicelead').escape(),
-	check('servicelead_email').escape(),
-	check('documents').escape()
-	], function (req, res) { handle_form(req, res); });
+router.post('/process-project-form', requireLogin, function (req, res) { handle_form(req, res); });
 	
 //-------------------------------------------------------------------
 // DELETE PROJECTS - handle form submissions

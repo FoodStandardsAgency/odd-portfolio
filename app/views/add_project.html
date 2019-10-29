@@ -200,7 +200,7 @@
 			<div class="container">
 			<div class="left30"><label for="new_update">New update:&nbsp; &nbsp;</label><br /></div>
 			<div class="right70">
-			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" rows="4" placeholder="New update" /></textarea>
+			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line;" placeholder="New update" /></textarea>
 			<p style="text-align:left; color:#53565A;">Max 1,000 characters (approx. 350 - 400 words).</p>
 			</div>
 			<div class="clear"></div>
@@ -209,8 +209,9 @@
 			<div class="container">
 			<div class="left30"><label for="update" style="color:#53565A;">Previous update:&nbsp; &nbsp;</label><br /></div>
 			<div class="right70">
-			<p style="color:#53565A;">{{ data.update | safe}}</p>
-			<input name="update" 			id="update"  			value= "{{ data.update | safe}}" 		hidden />
+			<textarea id="update" type="text" name="update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line; display:none;" placeholder="Previous update" />{{ data.update | safe}}</textarea>
+			<p style="color:#53565A; white-space: pre-wrap;">{{ data.update | safe}}</p>
+			<!--<input name="update" id="update"  value= "{{ data.update | safe}}" 	hidden />-->
 			</div>
 			<div class="clear"></div>
 			</div>

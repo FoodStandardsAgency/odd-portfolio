@@ -1,72 +1,72 @@
 const queries 	= require('./queries');
-const striptags = require('striptags');
+const xss	= require('xss');
 
 function handle_form(req, res) {
 	
 	// About the project
-	const project_id = striptags(req.body.project_id)
-	const project_name = striptags(req.body.project_name)
-	const project_desc = striptags(req.body.project_desc)
-	const rels = striptags(req.body.rels)
+	var project_id = xss(req.body.project_id)
+	const project_name = xss(req.body.project_name)
+	const project_desc = xss(req.body.project_desc)
+	const rels = xss(req.body.rels)
 	
-	const phase = striptags(req.body.phase)
-	const category = striptags(req.body.category)
-	const subcat = striptags(req.body.subcat)
-	const rag = striptags(req.body.rag)
-	const onhold = striptags(req.body.onhold)
+	const phase = xss(req.body.phase)
+	const category = xss(req.body.category)
+	const subcat = xss(req.body.subcat)
+	const rag = xss(req.body.rag)
+	const onhold = xss(req.body.onhold)
 
 	// Dates
-	var start_date_day = striptags(req.body.start_date_day)
-	var start_date_month = striptags(req.body.start_date_month)
-	var start_date_year = striptags(req.body.start_date_year)
+	var start_date_day = xss(req.body.start_date_day)
+	var start_date_month = xss(req.body.start_date_month)
+	var start_date_year = xss(req.body.start_date_year)
 	
-	var actstart_day = striptags(req.body.actstart_day)
-	var actstart_month = striptags(req.body.actstart_month)
-	var actstart_year = striptags(req.body.actstart_year)
+	var actstart_day = xss(req.body.actstart_day)
+	var actstart_month = xss(req.body.actstart_month)
+	var actstart_year = xss(req.body.actstart_year)
 	
-	var expend_day = striptags(req.body.expend_day)
-	var expend_month = striptags(req.body.expend_month)
-	var expend_year = striptags(req.body.expend_year)
+	var expend_day = xss(req.body.expend_day)
+	var expend_month = xss(req.body.expend_month)
+	var expend_year = xss(req.body.expend_year)
 	
-	var hardend_day = striptags(req.body.hardend_day)
-	var hardend_month = striptags(req.body.hardend_month)
-	var hardend_year = striptags(req.body.hardend_year)
+	var hardend_day = xss(req.body.hardend_day)
+	var hardend_month = xss(req.body.hardend_month)
+	var hardend_year = xss(req.body.hardend_year)
 	
-	var update = striptags(req.body.update)
-	var new_update = striptags(req.body.new_update)
+	var update = xss(req.body.update)
+	var new_update = xss(req.body.new_update)
 	
-	const oddlead = striptags(req.body.oddlead)
-	const oddlead_email = striptags(req.body.oddlead_email)
-	const servicelead = striptags(req.body.servicelead)
-	const servicelead_email = striptags(req.body.servicelead_email)
-	const team = striptags(req.body.team)
+	const oddlead = xss(req.body.oddlead)
+	const oddlead_email = xss(req.body.oddlead_email)
+	const servicelead = xss(req.body.servicelead)
+	const servicelead_email = xss(req.body.servicelead_email)
+	const team = xss(req.body.team)
 	
-	const priority = striptags(req.body.priority)
-	const funded = striptags(req.body.funded)
-	const confidence = striptags(req.body.confidence)
-	const priorities = striptags(req.body.priorities)
-	const benefits = striptags(req.body.benefits)
-	const criticality = striptags(req.body.criticality)
+	const priority = xss(req.body.priority)
+	const funded = xss(req.body.funded)
+	const confidence = xss(req.body.confidence)
+	const priorities = xss(req.body.priorities)
+	const benefits = xss(req.body.benefits)
+	const criticality = xss(req.body.criticality)
 	
-	const budget = striptags(req.body.budget)
-	const spent = striptags(req.body.spent)
+	const budget = xss(req.body.budget)
+	const spent = xss(req.body.spent)
 	
-	const docs_name1 = striptags(req.body.docs_name1)
-	const docs_name2 = striptags(req.body.docs_name2)
-	const docs_name3 = striptags(req.body.docs_name3)
-	const docs_name4 = striptags(req.body.docs_name4)
+	const docs_name1 = xss(req.body.docs_name1)
+	const docs_name2 = xss(req.body.docs_name2)
+	const docs_name3 = xss(req.body.docs_name3)
+	const docs_name4 = xss(req.body.docs_name4)
 	
-	const docs_link1 = striptags(req.body.docs_link1)
-	const docs_link2 = striptags(req.body.docs_link2)
-	const docs_link3 = striptags(req.body.docs_link3)
-	const docs_link4 = striptags(req.body.docs_link4)
+	const docs_link1 = xss(req.body.docs_link1)
+	const docs_link2 = xss(req.body.docs_link2)
+	const docs_link3 = xss(req.body.docs_link3)
+	const docs_link4 = xss(req.body.docs_link4)
 	
-	var link_name = striptags(req.body.link_name)
-	var link_address = striptags(req.body.link_address)
+	var link_name = xss(req.body.link_name)
+	var link_address = xss(req.body.link_address)
 	
-	const deps		= striptags(req.body.deps)
+	const deps		= xss(req.body.deps)
 	
-	const form_type = striptags(req.body.form_type)
+	const form_type = xss(req.body.form_type)
 	
 	
 	// Combine links and docs names
