@@ -128,13 +128,15 @@ function handle_form(req, res) {
 	.then(console.log("INSERT query run - project update or addition"))
 	.catch(e => console.error(e.stack))
 	
-	if (form_type != 'ptadd'){var ft = "updated";}	else {var ft = "added";}
-	
-	// Display thank you page
-	res.render('thank_you', {
-	"id": project_id,
-	"message": ft
-	})
+	// Redirect to the project page
+	var url = '/projects/'.concat(project_id);
+	if (form_type == 'ptadd'){
+		// Wait for 3 seconds before redirecting - as it needs to create the page before redirecting. Without delay, it redirects to the homepage.
+		setTimeout(function () {
+			res.redirect(url)
+		}, 3000); 
+	}	
+	else {res.redirect(url)}
 }
 
 module.exports = handle_form;
