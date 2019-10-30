@@ -9,7 +9,7 @@ const config 			= require('./config');
 const queries 			= require('./queries');
 
 const add_project 		= require('./render_add_project');
-const {add_supplier}			= require('./add_supplier');
+const {add_supplier}	= require('./add_supplier');
 const {render_add_supplier}			= require('./add_supplier');
 const update_portfolio 	= require('./update_portfolio');
 const delete_portfolio	= require('./delete_portfolio');
@@ -44,7 +44,6 @@ function nestedGroupBy(data, keys) {
 // Redirect not logged in users to the login page
 function requireLogin (req, res, next) {console.log("Login"); console.log(req.session.user); console.log(req.session.group); if (req.session.login == undefined) {console.log("login undefined - redirecting"); req.session.destroy(); 
 res.redirect('/login');} else {next();}};
-
 
 //-------------------------------------------------------------------
 // LOGIN PAGE
