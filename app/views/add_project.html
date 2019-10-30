@@ -195,25 +195,42 @@
 			<br /><br />
 
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Update</h2>
-			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color:#53565A;">Enter your new update below. You can make changes as many times as you like on the same day by submitting a new update. This will overwrite any changes made earlier in the day. Updates can't be changed on a later date.<br /><br /></p>
+			{% if udates[0] == udates[1]%}
+			
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">You can make changes to your existing update below. This function will only be active today. You will be able to submit new update tomorrow.<br /><br /></p>
+					
+			<div class="container">
+			<div class="left30" style="color:#53565A;"><label for="update">Update:&nbsp; &nbsp;</label><br /></div>
+			<div class="right70">
+			<textarea id="update" type="text" name="update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line;" placeholder="Update" />{{ data.update | safe}}</textarea>
+			<p style="text-align:left; color:#53565A;">Max 1,000 characters (approx. 350 - 400 words).</p>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			{% else %}
+			
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">Enter your new update below. You can change it as many times as you need on the same day. This will overwrite any changes made earlier in the day. Updates can't be changed on a later date.<br /><br /></p>
 			
 			<div class="container">
 			<div class="left30"><label for="new_update">New update:&nbsp; &nbsp;</label><br /></div>
 			<div class="right70">
-			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line;" placeholder="New update" /></textarea>
+			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" style="white-space: pre-line;" rows="7" placeholder="New update" /></textarea>
 			<p style="text-align:left; color:#53565A;">Max 1,000 characters (approx. 350 - 400 words).</p>
 			</div>
 			<div class="clear"></div>
 			</div>
 			
 			<div class="container">
-			<div class="left30"><label for="update" style="color:#53565A;">Previous update:&nbsp; &nbsp;</label><br /></div>
+			<div class="left30" style="color:#53565A;"><label for="update">Previous update:&nbsp; &nbsp;</label><br /></div>
 			<div class="right70">
 			<textarea id="update" type="text" name="update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line; display:none;" placeholder="Previous update" />{{ data.update | safe}}</textarea>
 			<p style="color:#53565A; white-space: pre-wrap;">{{ data.update | safe}}</p>
 			</div>
 			<div class="clear"></div>
 			</div>
+			
+			{% endif %}
 			
 			
 			

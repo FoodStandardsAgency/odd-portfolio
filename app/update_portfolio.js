@@ -6,7 +6,7 @@ function update_portfolio(req,res) {
 	const project_id = req.params.project_id;
 	
 	//Pull data from the DB to pre-populate the form
-	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies from latest_projects where project_id = $1';
+	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp from latest_projects where project_id = $1';
 	var values = [project_id];
 
 	// Run the query
@@ -37,7 +37,16 @@ function update_portfolio(req,res) {
 		
 		// handle link
 		if(result.rows[0].link != null && result.rows[0].link != ''){var links = result.rows[0].link.split(",");} else {var links = '';}
-			
+		
+		// dates - to see if there already was an update today
+		var today = new Date().toString();
+		var udate = result.rows[0].timestamp.toString();
+		
+		var today = today.substr(0,15);
+		var udate = udate.substr(0,15);
+		
+		var dates_for_updates = [today, udate];
+					
 			res.render('add_project', {
 			"title": "Update existing project",
 			"button": "Update project",
@@ -45,11 +54,11 @@ function update_portfolio(req,res) {
 			"data": result.rows[0],
 			"docs": docs,
 			"link": links,
-			"dates": dates
+			"dates": dates,
+			"udates": dates_for_updates
 			});
 		})
 	.catch();
-	
 }
 
 module.exports = update_portfolio;

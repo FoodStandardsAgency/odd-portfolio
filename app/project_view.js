@@ -100,7 +100,7 @@ function project_view(req, res) {
 					queries.generic_query(project_updates, [project_id, ''])
 					.then((updates) => {
 						
-						console.log(updates);
+						//console.log(updates);
 					
 						res.render('project', {
 							"user": user,
