@@ -9,6 +9,8 @@ const config 			= require('./config');
 const queries 			= require('./queries');
 
 const add_project 		= require('./render_add_project');
+const {add_supplier}			= require('./add_supplier');
+const {render_add_supplier}			= require('./add_supplier');
 const update_portfolio 	= require('./update_portfolio');
 const delete_portfolio	= require('./delete_portfolio');
 const update_odd 		= require('./update_odd');
@@ -58,6 +60,17 @@ router.get('/log-out', (req, res) => {
 	res.writeHead(302, {'Location': '/login'});
 	res.end();
 });
+
+//-------------------------------------------------------------------
+// SUPPLIER ACCOUNT
+//-------------------------------------------------------------------
+
+router.get('/add-supplier', requireLogin, function (req, res) {
+	if(req.session.user == 'portfolio') {render_add_supplier(req,res)}
+	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
+});
+
+router.post('/add-supplier', [check('user').escape()], function (req, res) {add_supplier(req,res);});
 
 
 //-------------------------------------------------------------------

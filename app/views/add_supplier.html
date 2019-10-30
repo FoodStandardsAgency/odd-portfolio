@@ -9,9 +9,9 @@
 	<div class="grid-row">
 		<section class="column-full">
 		
-			<p>Supplier name will be used as a username. It needs to be a single word, consisting of letters and digits only.</p>
+			<p style="margin-left:2%;">Supplier name will be used as a username. It needs to be a single word, consisting of letters and digits only.</p>
 			
-			<form action="/login" method="post">
+			<form action="/add-supplier" method="post">
 			
 			<div class="container">
 			<div class="left30"><label for="user">Supplier name:&nbsp; &nbsp;</label></div>
@@ -30,6 +30,20 @@
 			<input type="submit" value="Create account" style="margin-left:2%;">
 
 			</form>
+			
+			<br /><hr /><br />
+			
+			{% if cnt > 0 %}
+			<p style="margin-left:2%;"><span style="font-weight:800;">All suppliers:</span> {{ cnt }}</p>
+			
+			<p style="margin-left:2%;">List:</br />
+			{% for supplier in supps %}
+			{{ supplier | capitalize }} <br />
+			{% endfor %}
+			</p>
+			
+			{% endif %}
+
 		</section>
 	</div>
 </main>
