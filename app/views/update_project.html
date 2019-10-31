@@ -177,17 +177,17 @@
 			{% endif %}
 
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Budget</h2>
-			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color:#53565A;">Please use numbers only, for example for £100k, please input 100000.<br /><br /></p>
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color:#53565A;">Please use numbers only, for example for £100k, please input 100000. If budget is not applicable to this project, please enter 0.<br /><br /></p>
 			
 			<div class="container">
 			<div class="left30"><label for="budget">Budget:&nbsp; &nbsp;</label></div>				
-			<div class="right70"><input id="budget" maxlength="15" type="text" name="budget"  class="form_input" value="{{data.budget | safe}}" /></div>
+			<div class="right70"><input id="budget" maxlength="15" type="number" name="budget"  class="form_input" value="{{data.budget | safe}}" /></div>
 			<div class="clear"></div>
 			</div>
 			
 			<div class="container">
 			<div class="left30"><label for="spent">Spent:&nbsp; &nbsp;</label></div>				
-			<div class="right70"><input id="spent" maxlength="15" type="text" name="spent" class="form_input" value="{{data.spent | safe}}" /></div>
+			<div class="right70"><input id="spent" maxlength="15" type="number" name="spent" class="form_input" value="{{data.spent | safe}}" /></div>
 			<div class="clear"></div>
 			</div>
 					
