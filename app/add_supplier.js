@@ -3,8 +3,8 @@ const queries 	= require('./queries');
 
 function add_supplier(req, res) {
 	// Get form data
-	const user = req.body.user;
-	const password = req.body.password;
+	const user = req.body.user_supp;
+	const password = req.body.password_supp;
 
 	// Calculate hash
 	const hash = crypto.createHash('sha256').update(password).digest('hex').toUpperCase();
@@ -17,7 +17,9 @@ function add_supplier(req, res) {
 	queries.generic_query(text, values).then().catch();
 	
 	// Redirect
-	res.redirect('/add-supplier');
+	setTimeout(function () {
+			res.redirect('/add-supplier');
+		}, 3000); 
 }
 
 function render_add_supplier(req,res){

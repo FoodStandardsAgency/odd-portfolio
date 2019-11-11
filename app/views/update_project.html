@@ -140,10 +140,10 @@
 			</div>
 			
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Update</h2>
-			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">Enter your new update below. You can make changes as many times as you like on the same day by submitting a new update. This will overwrite any changes made earlier in the day. Updates can't be changed on a later date.<br /><br /></p>
-			
-			
+
 			{% if udates[0] == udates[1]%}
+			
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">Make changes to your update below. You can only amend an update on the day it was posted.<br /><br /></p>
 					
 			<div class="container">
 			<div class="left30" style="color:#53565A;"><label for="update">Update:&nbsp; &nbsp;</label><br /></div>
@@ -155,6 +155,8 @@
 			</div>
 			
 			{% else %}
+			
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">Enter your new update below. You can only amend an update on the day it was posted.<br /><br /></p>
 			
 			<div class="container">
 			<div class="left30"><label for="new_update">New update:&nbsp; &nbsp;</label><br /></div>
