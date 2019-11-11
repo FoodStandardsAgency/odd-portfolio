@@ -195,25 +195,42 @@
 			<br /><br />
 
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Update</h2>
-			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color:#53565A;">Enter your new update below. You can make changes as many times as you like on the same day by submitting a new update. This will overwrite any changes made earlier in the day. Updates can't be changed on a later date.<br /><br /></p>
+			{% if udates[0] == udates[1]%}
+			
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">Make changes to your update below. You can only amend an update on the day it was posted.<br /><br /></p>
+					
+			<div class="container">
+			<div class="left30" style="color:#53565A;"><label for="update">Update:&nbsp; &nbsp;</label><br /></div>
+			<div class="right70">
+			<textarea id="update" type="text" name="update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line;" placeholder="Update" />{{ data.update | safe}}</textarea>
+			<p style="text-align:left; color:#53565A;">Max 1,000 characters (approx. 350 - 400 words).</p>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			{% else %}
+			
+			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color: #53565A;">Enter your new update below. You can only amend an update on the day it was posted.<br /><br /></p>
 			
 			<div class="container">
 			<div class="left30"><label for="new_update">New update:&nbsp; &nbsp;</label><br /></div>
 			<div class="right70">
-			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" rows="4" placeholder="New update" /></textarea>
+			<textarea id="new_update" type="text" name="new_update" maxlength="1000" class="form_input" style="white-space: pre-line;" rows="7" placeholder="New update" /></textarea>
 			<p style="text-align:left; color:#53565A;">Max 1,000 characters (approx. 350 - 400 words).</p>
 			</div>
 			<div class="clear"></div>
 			</div>
 			
 			<div class="container">
-			<div class="left30"><label for="update" style="color:#53565A;">Previous update:&nbsp; &nbsp;</label><br /></div>
+			<div class="left30" style="color:#53565A;"><label for="update">Previous update:&nbsp; &nbsp;</label><br /></div>
 			<div class="right70">
-			<p style="color:#53565A;">{{ data.update | safe}}</p>
-			<input name="update" 			id="update"  			value= "{{ data.update | safe}}" 		hidden />
+			<textarea id="update" type="text" name="update" maxlength="1000" class="form_input" rows="7" style="white-space: pre-line; display:none;" placeholder="Previous update" />{{ data.update | safe}}</textarea>
+			<p style="color:#53565A; white-space: pre-wrap;">{{ data.update | safe}}</p>
 			</div>
 			<div class="clear"></div>
 			</div>
+			
+			{% endif %}
 			
 			
 			
@@ -334,7 +351,7 @@
 			</div>
 			
 			<h2 class="heading-medium" style="margin-bottom:0; margin-left:2%;">Budget</h2>
-			<span style="margin-left:2%; margin-bottom:10px; color:#53565A;">Please use numbers only, for example for £100k, please input 100000.</span><br /><br />
+			<span style="margin-left:2%; margin-bottom:10px; color:#53565A;">Please use numbers only, for example for £100k, please input 100000. If budget is not applicable to this project, please enter 0.</span><br /><br />
 			
 			<div class="container">
 			<div class="left30"><label for="budget">Budget:&nbsp; &nbsp;</label></div>				

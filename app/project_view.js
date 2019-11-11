@@ -5,7 +5,10 @@ function currencyFormat(num) { return '£' + num.replace(/(\d)(?=(\d{3})+(?!\d))
 
 function project_view(req, res) {
 	var user = req.session.user;
+	var group = req.session.group;
 	var project_id = req.params.project_id;
+	
+	console.log(group);
 	
 	var selected_project = 'SELECT * from latest_projects where project_id = $1';
 	var project_updates = 'SELECT * from updates where project_id = $1 and update != $2 order by timestamp desc';
@@ -21,10 +24,7 @@ function project_view(req, res) {
 		else {var docs = '';}
 		
 		if(project.rows[0].link != null && project.rows[0].link != ''){var links = project.rows[0].link.split(",");} else {var links = '';}
-		
-		/*if(project.rows[0].rels 	 != null && project.rows[0].rels  	  != ''){var related = project.rows[0].rels.split(","); var related_count = related.length; }	
-		else {var related = ''; var related_count = 0;}*/
-		
+			
 		if(project.rows[0].rels != '' && project.rows[0].rels != undefined){
 			var rels = project.rows[0].rels
 			var rels = rels.replace(/[^A-Za-z0-9,]/g,'');
@@ -42,10 +42,7 @@ function project_view(req, res) {
 			var deps = deps.concat('\'');
 		} 
 		else {var deps = '';}
-		
-		/*if(project.rows[0].dependencies 	 != null && project.rows[0].dependencies  	 != ''){var deps = project.rows[0].dependencies.split(","); var deps_count = deps.length; }	
-		else {var deps = ''; var deps_count = 0;}*/
-		
+				
 		if(project.rows[0].budget 	 != null && project.rows[0].budget 	  != ''){var budget = project.rows[0].budget.split(","); }	
 		else {var budget = 0;}
 		
@@ -93,7 +90,7 @@ function project_view(req, res) {
 			if(deps != ''){	var deps_query = 'select project_id, project_name from latest_projects where project_id in ('.concat(deps,')');}
 			else {var deps_query = 'select project_id, project_name from latest_projects where project_id = \'test\'';}
 			
-			console.log(rels_query);
+			//console.log(rels_query);
 			queries.generic_query(rels_query)
 			.then((rels) =>{
 				
@@ -102,9 +99,12 @@ function project_view(req, res) {
 
 					queries.generic_query(project_updates, [project_id, ''])
 					.then((updates) => {
+						
+						//console.log(updates);
 					
 						res.render('project', {
 							"user": user,
+							"group": group,
 							"data": project.rows[0],
 							"docs": docs,
 							"phases": config.phases,

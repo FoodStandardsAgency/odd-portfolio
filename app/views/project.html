@@ -141,47 +141,43 @@
 			{% else %}
 				<p>{{ data.oddlead | default('Not set') }}</p>
 
-			<br />
 			{% endif %}
 			
 			{% if dates[10] or dates[11] or dates[12] or dates[13] or comp %}
-			<h3 class="heading-small">Key dates</h3>
+			<br /><h3 class="heading-small">Key dates</h3>
 			<p>
-						
 			{% if dates[10] %}Intended start date:<br /> {{ dates[0] }} {{ dates[1] }} <br /><br />{% endif %}
 			{% if dates[11] %}Date started:<br /> {{ dates[2] }} {{ dates[3] }} {{ dates[4] }}<br /><br />{% endif %}
 			{% if dates[12] %}Intended completion date:<br /> {{ dates[5] }} {{ dates[6] }} <br /><br />{% endif %}
 			{% if dates[13] %}Hard deadline:<br /> {{ dates[7] }} {{ dates[8] }} {{ dates[9] }}<br /><br />{% endif %}
 			{% if comp %}Completed:<br /> {{ comp[2] }} {{ comp[1] }} {{ comp[3] }}<br /><br />{% endif %}
-			
 			</p>
 			{% endif %}
-			
-			
-			
-			
-			
-			
+
 			{% if link[1] %}
 			<br /><h3 class="heading-small">Project channel</h3>
 			
 				<a href="{{ link[1] }}" target="_blank" title="Project channel">
 					<p>{{ link[0]}}</p>
 				</a>
-			
-			<br />
 			{% endif %}
 			
 	
-			{% if (data.budget) and (user != 'supplier') %}
-			<br /><h3 class="heading-small">Budget</h3>
-			
-			<strong>Allocated:</strong> {{ budget }} <br />
+			{% if (data.budget) and (group != '4') %}
+				
+				<br /><h3 class="heading-small">Budget</h3>
+				{% if data.budget == 0 %}	Not applicable	
+				
+				{% else %}
+					<strong>Allocated:</strong> {{ budget }} <br />
+					{% if data.spent %}	<strong>Used:</strong> {{ spent }} {% endif %}
+				{% endif %}
+								
+				
 			{% endif %}
+				
 			
-			{% if (data.spent) and (user != 'supplier') %}
-			<strong>Used:</strong> {{ spent }}
-			{% endif %}
+			
 
 		</section>
 	</div>

@@ -9,6 +9,8 @@ const config 			= require('./config');
 const queries 			= require('./queries');
 
 const add_project 		= require('./render_add_project');
+const {add_supplier}	= require('./add_supplier');
+const {render_add_supplier}			= require('./add_supplier');
 const update_portfolio 	= require('./update_portfolio');
 const delete_portfolio	= require('./delete_portfolio');
 const update_odd 		= require('./update_odd');
@@ -40,9 +42,8 @@ function nestedGroupBy(data, keys) {
 }
 
 // Redirect not logged in users to the login page
-function requireLogin (req, res, next) { console.log("checking login"); console.log(req.session.login); if (req.session.login == undefined) {console.log("in if"); req.session.destroy(); 
+function requireLogin (req, res, next) {console.log("Login"); console.log(req.session.user); console.log(req.session.group); if (req.session.login == undefined) {console.log("login undefined - redirecting"); req.session.destroy(); 
 res.redirect('/login');} else {next();}};
-
 
 //-------------------------------------------------------------------
 // LOGIN PAGE
@@ -58,6 +59,17 @@ router.get('/log-out', (req, res) => {
 	res.writeHead(302, {'Location': '/login'});
 	res.end();
 });
+
+//-------------------------------------------------------------------
+// SUPPLIER ACCOUNT
+//-------------------------------------------------------------------
+
+router.get('/add-supplier', requireLogin, function (req, res) {
+	if(req.session.user == 'portfolio') {render_add_supplier(req,res)}
+	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
+});
+
+router.post('/add-supplier', [check('user').escape()], function (req, res) {add_supplier(req,res);});
 
 
 //-------------------------------------------------------------------
@@ -199,18 +211,7 @@ router.post('/upload', 		upload.single('file'), function (req, res) { bulk(req, 
 //-------------------------------------------------------------------
 // ADD/UPDATE PROJECTS - handle form submissions
 //-------------------------------------------------------------------
-router.post('/process-project-form', requireLogin, [
-	// Sanitize values
-	check('project_id').escape(), 
-	check('project_name').escape(),
-	check('project_desc').escape(),
-	check('update').escape(),
-	check('oddlead').escape(),
-	check('oddlead_email').escape(),
-	check('servicelead').escape(),
-	check('servicelead_email').escape(),
-	check('documents').escape()
-	], function (req, res) { handle_form(req, res); });
+router.post('/process-project-form', requireLogin, function (req, res) { handle_form(req, res); });
 	
 //-------------------------------------------------------------------
 // DELETE PROJECTS - handle form submissions

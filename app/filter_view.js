@@ -15,11 +15,15 @@ function filter_view (req, res){
 	var team 			= req.body.team
 	var update_date		= req.body.update_date
 	var no_updates		= req.body.no_updates
+	var from			= req.body.update_date_from
+	var to 				= req.body.update_date_to
 	
-	if(update_date == undefined) {update_date = '';}
-	if(no_updates == undefined) {no_updates = 'none';}
+	if(update_date == undefined) 	{update_date = '';}
+	if(no_updates == undefined) 	{no_updates = 'none';}
+	if(from == undefined) 			{from = '';}
+	if(to == undefined) 			{to = '';}
 	
-	var form_values = [project_name, phase, rag, pgroup, category, subcat, oddlead, team, onhold, update_date, no_updates]
+	var form_values = [project_name, phase, rag, pgroup, category, subcat, oddlead, team, onhold, update_date, no_updates, from, to]
 
 	// Build query 
 	
@@ -27,7 +31,9 @@ function filter_view (req, res){
 	var values = [];
 	var i = 0;
 	
-	if(update_date != '') {var upt_dt = moment(update_date, "YYYY/MM/DD");}
+	if(update_date != '') 	{var upt_dt 	= moment(update_date, "YYYY/MM/DD");}
+	if(from != '') 			{var from 		= moment(from, "YYYY/MM/DD");}
+	if(to != '') 			{var to 		= moment(to, "YYYY/MM/DD").add(23, 'hours').add(59, 'minutes');}
 	
 	if(project_name != '') 	{ 
 		var project_name1 = '% '.concat(project_name, ' %');
@@ -46,6 +52,7 @@ function filter_view (req, res){
 	if(oddlead != '')  		{ var oddlead = '%'.concat(oddlead, '%'); var i = i+1; var text = text.concat('oddlead ILIKE $',i,' and  '); values.push(oddlead);}
 	if(team != '')  		{ var team = '%'.concat(team, '%'); var i = i+1; var text = text.concat('(team ILIKE $',i,' or oddlead ILIKE $',i,')  and  '); values.push(team);}
 	if(onhold != 'none')  	{ var i = i+1; var text = text.concat('onhold = $',i,' and  '); values.push(onhold);}
+	if(from != '' && to != ''){var i = i+2; var text = text.concat('(latest_update>= $',i-1,' and latest_update<= $',i,') and  '); values.push(from); values.push(to);}
 	if(update_date != '')	{ var i = i+2; var text = text.concat('(latest_update < $',i-1,' and latest_update is not null ) and update != $',i,' and  '); values.push(upt_dt); values.push('')}
 	if(no_updates == 'y')  { 
 	

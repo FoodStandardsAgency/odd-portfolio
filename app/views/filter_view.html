@@ -2,8 +2,6 @@
 
 {% block content %}
 
-
-
 <main id="content" role="main">
 
 	<h1 class="heading-xlarge" style="margin-bottom:15px;">Filter projects</h1><br />
@@ -151,6 +149,22 @@
 			<div class="container">
 			<div class="left30"><label for="update_date">Last update before:&nbsp; &nbsp;</label></div>
 			<div class="right70"><input id="update_date" type="date" name="update_date" class="form_input" placeholder="dd/mm/yyyy" value= "{{form_values[9] | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="update_date_range">List projects with latest update between:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+				<div class="container">
+					<div class="left25">From: </div>
+					<div class="right75"><input id="update_date_from" type="date" name="update_date_from" class="form_input" placeholder="From dd/mm/yyyy" value= "{{form_values[11] | safe}}" /></div>
+				<div class="clear"></div>
+				</div>
+				<div class="container">
+					<div class="left25">To: </div>
+					<div class="right75"><input id="update_date_to" type="date" name="update_date_to" class="form_input" placeholder="To dd/mm/yyyy" value= "{{form_values[12] | safe}}" /></div>
+				<div class="clear"></div>
+				</div>
 			<div class="clear"></div>
 			</div>
 			
