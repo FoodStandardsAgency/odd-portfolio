@@ -223,7 +223,7 @@ router.post('/delete_project_process', requireLogin, function (req, res) {handle
 //-------------------------------------------------------------------	
 	
 router.get('/api/powerbi_projects_days', function(req, res) {
-  var token = req.headers['x-access-token'];
+  var token = req.headers['authorization'];
   if (token == process.env.POWERBI_TOKEN) {
 	  
 	  queries.powerbi_projects_days()
@@ -238,7 +238,7 @@ router.get('/api/powerbi_projects_days', function(req, res) {
 });
 
 router.get('/api/powerbi_date_flag', function(req, res) {
-  var token = req.headers['x-access-token'];
+  var token = req.headers['authorization'];
   if (token == process.env.POWERBI_TOKEN) {
 	  
 	  queries.powerbi_date_flag()
