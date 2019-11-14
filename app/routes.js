@@ -223,22 +223,22 @@ router.post('/delete_project_process', requireLogin, function (req, res) {handle
 //-------------------------------------------------------------------	
 	
 router.get('/api/powerbi_projects_days', function(req, res) {
-  var token = req.headers['x-access-token'];
+  var token = req.headers['authorization'];
   if (token == process.env.POWERBI_TOKEN) {
-	  
+  console.log("Authenticated - ready to provide the data");
 	  queries.powerbi_projects_days()
 	  .then((data)=>{
 		   res.status(200).send(data);
 	  })
 	  .catch();
   }
-  else if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
-  else if (token != process.env.POWERBI_TOKEN) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-  else return res.status(500).send({ auth: false, message: 'Authentication error.' });
+  else if (!token) { res.status(401).send({ auth: false, message: 'No token provided.' }); console.log("Missing token");}
+  else if (token != process.env.POWERBI_TOKEN) { res.status(500).send({ auth: false, message: 'Failed to authenticate token.' }); console.log("Incorrect token");}
+  else { res.status(500).send({ auth: false, message: 'Authentication error.' }); console.log("Other error");}
 });
 
 router.get('/api/powerbi_date_flag', function(req, res) {
-  var token = req.headers['x-access-token'];
+  var token = req.headers['authorization'];
   if (token == process.env.POWERBI_TOKEN) {
 	  
 	  queries.powerbi_date_flag()
