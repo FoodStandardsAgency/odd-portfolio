@@ -224,7 +224,6 @@ router.post('/delete_project_process', requireLogin, function (req, res) {handle
 	
 router.get('/api/powerbi_projects_days', function(req, res) {
   var token = req.headers['authorization'];
-  console.log(req.headers['authorization']);
   if (token == process.env.POWERBI_TOKEN) {
   console.log("Authenticated - ready to provide the data");
 	  queries.powerbi_projects_days()
