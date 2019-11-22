@@ -138,6 +138,16 @@
 			<a href="mailto:{{ data.oddlead_email }}">{{ data.oddlead_email | safe}}</a>
 			</p>
 			
+			{% if data.oddlead_role == 'sup' or data.oddlead_role == 'imp' or data.oddlead_role == 'man' %}
+			<h3 class="heading-small">Lead's role </h3>
+			<p>
+			{% if data.oddlead_role == 'sup' %} Support
+			{% elif data.oddlead_role == 'imp' %} Implementation
+			{% elif data.oddlead_role == 'man' %} Management
+			{% endif %}
+			</p>
+			{% endif %}
+			
 			{% else %}
 				<p>{{ data.oddlead | default('Not set') }}</p>
 
@@ -153,9 +163,21 @@
 			{% if comp %}Completed:<br /> {{ comp[2] }} {{ comp[1] }} {{ comp[3] }}<br /><br />{% endif %}
 			</p>
 			{% endif %}
+			
+			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l' or link[1] %} <br /> {% endif %}
+			
+			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l' %}
+			<h3 class="heading-small">Project size </h3>
+			<p>
+			{% if data.project_size == 's' %} Small
+			{% elif data.project_size == 'm' %} Medium
+			{% elif data.project_size == 'l' %} Large
+			{% endif %}
+			</p>
+			{% endif %}
 
 			{% if link[1] %}
-			<br /><h3 class="heading-small">Project channel</h3>
+			<h3 class="heading-small">Project channel</h3>
 			
 				<a href="{{ link[1] }}" target="_blank" title="Project channel">
 					<p>{{ link[0]}}</p>
