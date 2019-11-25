@@ -251,6 +251,21 @@ router.get('/api/powerbi_date_flag', function(req, res) {
   else if (token != process.env.POWERBI_TOKEN) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
   else return res.status(500).send({ auth: false, message: 'Authentication error.' });
 });
+
+router.get('/api/powerbi_phase_prev', function(req, res) {
+  var token = req.headers['authorization'];
+  if (token == process.env.POWERBI_TOKEN) {
+	  
+	  queries.powerbi_phase()
+	  .then((data)=>{
+		   res.status(200).send(data);
+	  })
+	  .catch();
+  }
+  else if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  else if (token != process.env.POWERBI_TOKEN) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+  else return res.status(500).send({ auth: false, message: 'Authentication error.' });
+});
 	
 //-------------------------------------------------------------------
 // Error handling
