@@ -64,6 +64,9 @@ function handle_form(req, res) {
 	var link_name = xss(req.body.link_name)
 	var link_address = xss(req.body.link_address)
 	
+	const project_size = xss(req.body.project_size)
+	const oddlead_role = xss(req.body.oddlead_role)
+	
 	const deps		= xss(req.body.deps)
 	
 	const form_type = xss(req.body.form_type)
@@ -121,8 +124,8 @@ function handle_form(req, res) {
 	
 	// Run insert query
 	
-	var insert_query = 'INSERT INTO projects(project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, dependencies) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31)';
-	var values = [project_id, project_name, start_date, project_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, deps];
+	var insert_query = 'INSERT INTO projects(project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, dependencies, project_size, oddlead_role) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33)';
+	var values = [project_id, project_name, start_date, project_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, deps, project_size, oddlead_role];
 		
 	queries.generic_query(insert_query, values)
 	.then(console.log("INSERT query run - project update or addition"))

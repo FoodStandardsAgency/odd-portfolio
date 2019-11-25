@@ -29,10 +29,23 @@
 			<div class="right70"><input id="project_name" type="text" name="project_name" class="form_input" placeholder="Project name" value= "{{data.project_name | safe}}" required /></div>
 			<div class="clear"></div>
 			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="project_size">Project size:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="project_size" class="form_input">
+			<option value="o" {% if data.project_size == 'o' %}selected{% endif %}>Project size</option>
+			<option value="s" {% if data.project_size == 's' %}selected{% endif %}>Small</option>
+			<option value="m" {% if data.project_size == 'm' %}selected{% endif %}>Medium</option>
+			<option value="l" {% if data.project_size == 'l' %}selected{% endif %}>Large</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
 				
 			<div class="container">
 			<div class="left30"><label for="project_desc">Short description:&nbsp; &nbsp;</label></div>
-			<div class="right70"><input id="project_desc" type="text" maxlength="250" name="project_desc" class="form_input" placeholder="Short description" value= "{{data.short_desc | safe}}" /></div>
+			<div class="right70"><textarea id="project_desc" type="text" name="project_desc" class="form_input" rows="3">{{ data.short_desc | safe}}</textarea></div>
 			<div class="clear"></div>
 			</div>
 
@@ -246,6 +259,19 @@
 			<div class="container">
 			<div class="left30"><label for="oddlead_email">ODD lead email:&nbsp; &nbsp;</label></div>
 			<div class="right70"><input id="oddlead_email" type="email" name="oddlead_email" class="form_input" placeholder="ODD lead email" value= "{{data.oddlead_email | safe}}" /></div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="oddlead_role">ODD lead project role:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="oddlead_role" class="form_input">
+			<option value="oth" {% if data.oddlead_role == 'oth' %}selected{% endif %}>Role</option>
+			<option value="sup" {% if data.oddlead_role == 'sup' %}selected{% endif %}>Support</option>
+			<option value="imp" {% if data.oddlead_role == 'imp' %}selected{% endif %}>Implementation</option>
+			<option value="man" {% if data.oddlead_role == 'man' %}selected{% endif %}>Management</option>
+			</select>
+			</div>
 			<div class="clear"></div>
 			</div>
 			

@@ -6,7 +6,7 @@ function update_portfolio(req,res) {
 	const project_id = req.params.project_id;
 	
 	//Pull data from the DB to pre-populate the form
-	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp from latest_projects where project_id = $1';
+	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp, project_size, oddlead_role from latest_projects where project_id = $1';
 	var values = [project_id];
 
 	// Run the query
