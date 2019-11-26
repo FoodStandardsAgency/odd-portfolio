@@ -32,6 +32,14 @@ const rag_map = [
 ['nor', 'No rag']
 ];
 
+const teams_map = [
+['Data', 'Data'],
+['Digital', 'Digital'],
+['DIGS', 'DIGS'],
+['IT', 'IT'],
+['', 'Not assigned'],
+];
+
 // ODD leads - load from the database
 queries.oddleads();
 
@@ -40,4 +48,5 @@ exports.categories = categories_map;
 exports.phases = phases_map;
 exports.priorities = priorities_order;
 exports.rags = rag_map;
+exports.teams = teams_map;
 exports.odd_leads = queries.oddleads();

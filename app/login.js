@@ -8,6 +8,8 @@ function login(req, res) {
 
 	// Calculate hash
 	const prov_hash = crypto.createHash('sha256').update(password).digest('hex').toUpperCase();
+	
+	//console.log(prov_hash)
 		
 	// Define queries
 	var text = 'SELECT username, pass_hash, access_group from users where username = $1';
@@ -17,6 +19,7 @@ function login(req, res) {
 	queries.generic_query(text, values)
 	.then((result) => {
 
+	//console.log(result.rows[0].pass_hash)
 		if(result.rowCount == 1){
 			if(result.rows[0].pass_hash == prov_hash){
 				req.session.user = result.rows[0].username;

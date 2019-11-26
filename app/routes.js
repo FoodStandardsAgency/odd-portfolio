@@ -104,6 +104,18 @@ router.get('/priority/', requireLogin, function (req, res) {
 	});	
 });
 
+router.get('/team/', requireLogin, function (req, res) {	
+	queries.current_projects()
+	.then((result) => {
+		res.render('index', {
+			"data": nestedGroupBy(result.rows, ['g6team', 'phase']),
+			"counts": _.countBy(result.rows, 'phase'),
+			"themes": config.teams,
+			"phases":config.phases,
+			"sess": req.session
+		});
+	});	
+});
 
 router.get('/rag/', requireLogin, function (req, res) {
 	queries.current_projects()
