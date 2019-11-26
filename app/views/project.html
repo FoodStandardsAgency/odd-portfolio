@@ -8,7 +8,7 @@
 	{% if user == 'portfolio' %}
 	<a href="/portfolio-delete/{{ data.project_id }}">Delete this project</a> | 
 	<a href="/portfolio-update/{{ data.project_id }}">Update this project</a>
-	{% elif user == 'odd' %}
+	{% elif user == 'odd' or  user == 'team_leaders'%}
 	<a href="/odd-update/{{ data.project_id }}">Update this project</a>
 	{% endif%}
 	</p></div>

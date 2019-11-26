@@ -197,7 +197,7 @@ router.get('/portfolio-delete/:project_id', requireLogin, function (req, res) {
 });
 
 router.get('/odd-update/:project_id', requireLogin, (req, res) => {
-	if(req.session.user == 'portfolio' || req.session.user == 'odd'){update_odd(req, res);}
+	if(req.session.user == 'portfolio' || req.session.user == 'odd' || req.session.user == 'team_leaders'){update_odd(req, res);}
 	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
 });
 
