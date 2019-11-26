@@ -131,6 +131,23 @@
 			
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Project team</h2><br />
 			
+			{% if sess.user == 'portfolio' or sess.user == 'team_leaders' %}
+			<div class="container">
+			<div class="left30"><label for="g6team">Team:&nbsp; &nbsp;</label></div>				
+			<div class="right70">
+			<select name="g6team" class="form_input">
+				<option value="none"  	{% if form_values[13] == 'none' %}	  selected {% endif %}>None selected</option>
+				<option value="Data"  	{% if form_values[13] == 'Data' %}	  selected {% endif %}>Data</option>
+				<option value="Digital" {% if form_values[13] == 'Digital' %} selected {% endif %}>Digital</option>
+				<option value="DIGS"  	{% if form_values[13] == 'DIGS' %}	  selected {% endif %}>DIGS</option>
+				<option value="IT"  	{% if form_values[13] == 'IT' %}	  selected {% endif %}>IT</option>
+				<option value="null"  	{% if form_values[13] == 'null' %}	  selected {% endif %}>Not assigned</option>
+			</select>			
+			</div>
+			<div class="clear"></div>
+			</div>
+			{% endif %}
+			
 			<div class="container">
 			<div class="left30"><label for="oddlead">ODD lead:&nbsp; &nbsp;</label></div>				
 			<div class="right70"><input id="oddlead" type="text" name="oddlead" class="form_input" placeholder="ODD lead includes" value= "{{form_values[6] | safe}}" /></div>
