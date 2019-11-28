@@ -35,7 +35,7 @@ const rag_map = [
 const teams_map = [
 ['Data', 'Data'],
 ['Digital', 'Digital'],
-['DIGS', 'DIGS'],
+['DIGS', 'KIM'],
 ['IT', 'IT'],
 ['', 'Not assigned'],
 ];
