@@ -101,7 +101,7 @@ router.get('/odd_people/view', requireLogin, function(req,res){
 				res.render('odd_people_all', {
 					"data": nestedGroupBy(result.rows, ['g6team']),
 					"count": result.rowCount,
-					"teams":	config.teams,
+					"teams": config.teams,
 					"sess": req.session,
 				})
 			}
