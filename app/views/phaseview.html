@@ -3,13 +3,12 @@
 {% block content %}
 
 <main id="content" role="main">
-
 	<p style="margin-top:30px;">
-		Order by: <a href="/"> theme</a>, <a href="/priority/"> priority</a>, {% if sess.user == 'portfolio'%} <a href="/oddlead/"> ODD lead</a>, {% endif %} <a href="/rag/"> rag status</a> or <a href="/status/"> stage</a>. 
+		Order by: <a href="/"> theme</a>, <a href="/priority/"> priority</a>, {% if sess.user == 'portfolio' or sess.user == 'team_leaders'%} <a href="/team/"> team</a>, {% endif %}{% if sess.user == 'portfolio'%} <a href="/oddlead/"> ODD lead</a>, {% endif %} <a href="/rag/"> rag status</a> or <a href="/status/"> stage</a>. 
 		
 		
 		{%if sess.user == 'portfolio'%}
-		You can also <a href="/filter-view">filter</a> or <a href="/portfolio-add">add</a> projects, or <a href="/add-supplier">add suppliers</a>.
+		<a href="/filter-view">Filter</a> or <a href="/portfolio-add">add</a> projects. <br /> <a href="/add-supplier">Add suppliers</a> or <a href="/odd_people/view">view all ODD leads</a>.
 		{% else %}
 		You can also <a href="/filter-view">filter projects</a>.
 		{% endif %}</p>

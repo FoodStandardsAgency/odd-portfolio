@@ -36,7 +36,8 @@ function handle_form(req, res) {
 	var new_update = xss(req.body.new_update)
 	
 	const oddlead = xss(req.body.oddlead)
-	const oddlead_email = xss(req.body.oddlead_email)
+	var oddlead_email = xss(req.body.oddlead_email)
+	var oddlead_email = oddlead_email.toLowerCase();
 	const servicelead = xss(req.body.servicelead)
 	const servicelead_email = xss(req.body.servicelead_email)
 	const team = xss(req.body.team)
