@@ -23,6 +23,7 @@ function filter_view (req, res){
 	if(no_updates == undefined) 	{no_updates = 'none';}
 	if(from == undefined) 			{from = '';}
 	if(to == undefined) 			{to = '';}
+    if(g6team == undefined) 			{g6team = 'odd';}
 	
 	var form_values = [project_name, phase, rag, pgroup, category, subcat, oddlead, team, onhold, update_date, no_updates, from, to, g6team]
 
@@ -49,7 +50,7 @@ function filter_view (req, res){
 	if(pgroup != 'none')  	{ var i = i+1; var text = text.concat('pgroup = $',i,' and  '); values.push(pgroup);}
 	if(category != 'none')  { var i = i+1; var text = text.concat('category = $',i,' and  '); values.push(category);}
 	if(subcat != '0')  		{ var i = i+1; var text = text.concat('subcat = $',i,' and  '); values.push(subcat);}
-	if(g6team != 'none' && g6team != 'null')  	{ var i = i+1; var text = text.concat('g6team = $',i,' and  ');values.push(g6team);}
+	if(g6team != 'none' & g6team != 'odd' & g6team != 'null')  	{ var i = i+1; var text = text.concat('g6team = $',i,' and  ');values.push(g6team);}
 	if(g6team == 'null' )  	{ var text = text.concat('g6team is null and  ');}
 	if(oddlead != '')  		{ var oddlead = '%'.concat(oddlead, '%'); var i = i+1; var text = text.concat('oddlead ILIKE $',i,' and  '); values.push(oddlead);}
 	if(team != '')  		{ var team = '%'.concat(team, '%'); var i = i+1; var text = text.concat('(team ILIKE $',i,' or oddlead ILIKE $',i,')  and  '); values.push(team);}
