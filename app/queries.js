@@ -15,13 +15,16 @@ const q = {
 	power_bi_phase: 'SELECT * from powerbi_phase_prev',
 	
 	unmatched_leads: 'select distinct oddlead, oddlead_email from latest_projects where g6team is null and (oddlead != $1 or oddlead_email != $2) order by oddlead_email',
-	odd_people: 'select * from odd_people order by g6team, surname'
+	odd_people: 'select * from odd_people order by g6team, surname',
+	
+	latest_projects:	'SELECT timestamp, project_id, project_name, project_size, short_desc, onhold, phase, category, subcat, rag, oddlead, oddlead_email, oddlead_role, pgroup, priority_main, funded, confidence, priorities, benefits, criticality, budgettype, budget, spent, documents, link, team, rels, dependencies, start_date, actstart, expend, hardend from latest_projects order by timestamp desc'
 }
 
 // Export promises
 module.exports = {
 	current_projects: 	(text, params) => pool.query(q.current_projects, ['completed']),
 	completed_projects: (text, params) => pool.query(q.completed_projects, ['completed']),
+	latest_projects: 	(text, params) => pool.query(q.latest_projects),
 	max_id:				(text, params) => pool.query(q.max_id),
 	oddleads:			(text, params) => pool.query(q.oddleads),
 	powerbi_projects_days: (text, params) => pool.query(q.power_bi_projects_days),

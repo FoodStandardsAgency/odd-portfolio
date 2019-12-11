@@ -4,6 +4,7 @@ const _ 				= require('lodash');
 const multer			= require('multer');
 const jwt 				= require('jsonwebtoken');
 const xss				= require('xss');
+const stringify 		= require('csv-stringify')
 
 // Custom modules
 const config 			= require('./config');
@@ -391,7 +392,7 @@ router.post('/process-project-form', requireLogin, function (req, res) { handle_
 router.post('/delete_project_process', requireLogin, function (req, res) {handle_delete(req, res)});
 
 //-------------------------------------------------------------------
-// Export PowerBI views - handle form submissions
+// Export PowerBI views
 //-------------------------------------------------------------------	
 	
 router.get('/api/powerbi_projects_days', function(req, res) {
@@ -438,6 +439,34 @@ router.get('/api/powerbi_phase_prev', function(req, res) {
   else if (token != process.env.POWERBI_TOKEN) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
   else return res.status(500).send({ auth: false, message: 'Authentication error.' });
 });
+
+
+//-------------------------------------------------------------------
+// Export latest projects as a csv
+//-------------------------------------------------------------------	
+
+router.get('/download/csv', requireLogin, function(req,res){
+
+	if(req.session.user == 'portfolio') {
+		queries.latest_projects()
+		.then( (result) => {
+
+		  res.setHeader('Content-Type', 'text/csv');
+		  res.setHeader('Content-Disposition', 'attachment; filename=\"' + 'latest_projects-' + Date.now() + '.csv\"');
+		  res.setHeader('Cache-Control', 'no-cache');
+		  res.setHeader('Pragma', 'no-cache');
+
+		  stringify(result.rows, { header: true })
+			.pipe(res);
+		})
+		.catch();
+	}
+	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
+})
+
+
+
+
 	
 //-------------------------------------------------------------------
 // Error handling
