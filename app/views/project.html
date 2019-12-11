@@ -191,6 +191,7 @@
 				{% if data.budget == 0 %}	Not applicable	
 				
 				{% else %}
+					<strong>Category:</strong> {{ budgettype }} <br />
 					<strong>Allocated:</strong> {{ budget }} <br />
 					{% if data.spent %}	<strong>Used:</strong> {{ spent }} {% endif %}
 				{% endif %}
