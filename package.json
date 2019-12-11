@@ -16,6 +16,7 @@
     "cron": "^1.7.2",
     "crypto": "latest",
     "css-loader": "3.0.0",
+    "csv-stringify": "^5.3.4",
     "dotenv": "latest",
     "express": "^4.15.2",
     "express-validator": "latest",

@@ -182,6 +182,19 @@
 			<p style="margin-left:2%; margin-bottom:10px; margin-top:0; color:#53565A;">Please use numbers only, for example for £100k, please input 100000. If budget is not applicable to this project, please enter 0.<br /><br /></p>
 			
 			<div class="container">
+			<div class="left30"><label for="budgettype">Spending category:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="budgettype" class="form_input">
+			<option value="none"  {% if data.budgettype == 'none'  %}selected{% endif %}>Budget type</option>
+			<option value="admin" {% if data.budgettype == 'admin' %}selected{% endif %}>Admin</option>
+			<option value="progr" {% if data.budgettype == 'progr' %}selected{% endif %}>Programme</option>
+			<option value="capit" {% if data.budgettype == 'capit' %}selected{% endif %}>Capital</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
 			<div class="left30"><label for="budget">Budget:&nbsp; &nbsp;</label></div>				
 			<div class="right70"><input id="budget" maxlength="15" type="number" name="budget"  class="form_input" value="{{data.budget | safe}}" /></div>
 			<div class="clear"></div>

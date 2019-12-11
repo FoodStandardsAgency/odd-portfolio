@@ -8,8 +8,6 @@ function project_view(req, res) {
 	var group = req.session.group;
 	var project_id = req.params.project_id;
 	
-	console.log(group);
-	
 	var selected_project = 'SELECT * from latest_projects where project_id = $1';
 	var project_updates = 'SELECT * from updates where project_id = $1 and update != $2 order by timestamp desc';
 	
@@ -78,6 +76,12 @@ function project_view(req, res) {
 		
 		var dates = [isd_month, isd_year, asd_day, asd_month, asd_year, eed_month, eed_year, aed_day, aed_month, aed_year, isd, asd, eed, aed];
 		
+		/*Budget type*/
+		if(project.rows[0].budgettype == 'none' || project.rows[0].budgettype == undefined){var budgettype = 'Not set'}
+		else if(project.rows[0].budgettype == 'admin' ){var budgettype = 'Admin'}
+		else if(project.rows[0].budgettype == 'progr' ){var budgettype = 'Programme'}
+		else {var budgettype = 'Capital'}
+			
 		queries.generic_query('select min_timestamp from completed_time where project_id = $1', [project_id])
 		.then((comp_date)=>{
 			
@@ -114,6 +118,7 @@ function project_view(req, res) {
 							"rels_cnt": rels.rowCount,
 							"deps": deps.rows,
 							"deps_cnt": deps.rowCount,
+							"budgettype": budgettype,
 							"budget": currencyFormat(project.rows[0].budget),
 							"spent": currencyFormat(project.rows[0].spent),
 							"dates": dates,

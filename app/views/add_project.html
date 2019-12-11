@@ -275,7 +275,7 @@
 			<div class="clear"></div>
 			</div>
 			
-			<div class="container">
+			<!--<div class="container">
 			<div class="left30"><label for="servicelead">Service lead:&nbsp; &nbsp;</label></div>		
 			<div class="right70"><input id="servicelead" type="text" name="servicelead" class="form_input" placeholder="Service lead" value= "{{data.servicelead | safe}}" /></div>
 			<div class="clear"></div>
@@ -285,7 +285,7 @@
 			<div class="left30"><label for="servicelead_email">Service lead email:&nbsp; &nbsp;</label></div>	
 			<div class="right70"><input id="servicelead_email" type="email" name="servicelead_email" class="form_input" placeholder="Service lead email" value= "{{data.servicelead_email | safe}}" /></div>
 			<div class="clear"></div>
-			</div>
+			</div>-->
 			
 			<div class="container">
 			<div class="left30"><label for="team">Project team:&nbsp; &nbsp;</label></div>
@@ -378,6 +378,19 @@
 			
 			<h2 class="heading-medium" style="margin-bottom:0; margin-left:2%;">Budget</h2>
 			<span style="margin-left:2%; margin-bottom:10px; color:#53565A;">Please use numbers only, for example for £100k, please input 100000. If budget is not applicable to this project, please enter 0.</span><br /><br />
+			
+			<div class="container">
+			<div class="left30"><label for="budgettype">Budget category:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="budgettype" class="form_input">
+			<option value="none"  {% if data.budgettype == 'none'  %}selected{% endif %}>Budget type</option>
+			<option value="admin" {% if data.budgettype == 'admin' %}selected{% endif %}>Admin</option>
+			<option value="progr" {% if data.budgettype == 'progr' %}selected{% endif %}>Programme</option>
+			<option value="capit" {% if data.budgettype == 'capit' %}selected{% endif %}>Capital</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>			
 			
 			<div class="container">
 			<div class="left30"><label for="budget">Budget:&nbsp; &nbsp;</label></div>				
