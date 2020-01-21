@@ -31,6 +31,8 @@
 					<option value="beta" 		{% if form_values[1] == 'beta' %}		selected {% endif %}>Beta</option>
 					<option value="live" 		{% if form_values[1] == 'live' %}		selected {% endif %}>Live</option>
 					<option value="completed" 	{% if form_values[1] == 'completed' %}	selected {% endif %}>Archived</option>
+					<option disabled>--------------</option>
+					<option value="nback" 		{% if form_values[1] == 'nback' %}	selected {% endif %}>Not in backlog</option>
 				</select>
 			<div class="clear"></div>
 			</div>
