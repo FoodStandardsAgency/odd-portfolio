@@ -87,7 +87,7 @@ if (process.env.CRON == 'y') {
 	var query_update = 'update projects set phase = $1 where phase = $2 and timestamp < now() - interval '.concat('\'','90 days','\'');
 	var values_update = ['completed', 'live']
 
-	const job = new CronJob('* * 1s * * *', function() {
+	const job = new CronJob('0 1 0 * * *', function() {
 		queries.generic_query(query, values).then( (result)=>{console.log("Auto archiving - rows affected:", result.rowCount);}).catch();
 		queries.generic_query(query_update, values_update).then( (result)=>{console.log("Update query run");}).catch();
 	});
