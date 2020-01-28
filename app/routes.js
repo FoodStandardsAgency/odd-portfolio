@@ -11,8 +11,8 @@ const config 			= require('./config');
 const queries 			= require('./queries');
 
 const add_project 		= require('./render_add_project');
-const {add_supplier}	= require('./add_supplier');
-const {render_add_supplier}			= require('./add_supplier');
+const {add_supplier}		= require('./add_supplier');
+const {render_add_supplier}	= require('./add_supplier');
 const update_portfolio 	= require('./update_portfolio');
 const delete_portfolio	= require('./delete_portfolio');
 const update_odd 		= require('./update_odd');
@@ -112,40 +112,6 @@ router.get('/odd_people/view', requireLogin, function(req,res){
 	}
 	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
 })
-
-/*router.get('/odd_people/view', requireLogin, function (req, res) {
-	if(req.session.user == 'portfolio') {
-		queries.odd_people()
-		.then( (result) => {
-			
-			if(result.rowCount >0){
-				res.render('odd_people_all', {
-					"data": result.rows,
-					"count": result.rowCount,
-					"sess": req.session,
-				})
-			}
-			else {res.redirect('/')}
-		})
-		.catch();
-	}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-});
-
-
-router.get('/status/', requireLogin, function (req, res) {
-	queries.current_projects()
-	.then((result) => {
-		res.render('phaseview', {
-			"data": 	nestedGroupBy(result.rows, ['phase']),
-			"counts": 	_.countBy(result.rows, 'phase'),
-			"phases":	config.phases,
-			"sess": req.session
-		});
-	})
-	.catch();	
-});*/
-
 
 router.get('/odd_people/add', requireLogin, function (req, res) {
 	if(req.session.user == 'portfolio') {res.render('add_odd_person', {"msg":"Add", "action":"/add-odd"})}
