@@ -99,27 +99,88 @@ function handle_form(req, res) {
 	else if(parseInt(priority,10) >= 10) 	{var pgroup = "medium-high";}
 	else if(parseInt(priority,10) >= 5)		{var pgroup = "medium-low";}
 	else 									{var pgroup = "low";}
-
-	// Concatenate DD MM YYYY into dates
+	
+	// Validate dates
+	
+	var currentdate = new Date(); 
+	var today_day	= currentdate.getDate();
+	var today_month = currentdate.getMonth()+1;
+	var today_year	= currentdate.getFullYear();	
+	
+	// Month & day must be 2-digit format; year already in in 4-digit format
+	if(start_date_month.length == 1) {start_date_month = '0'.concat(start_date_month)}
+	if(actstart_month.length == 1) {actstart_month = '0'.concat(actstart_month)}
+	if(expend_month.length == 1) {expend_month = '0'.concat(expend_month)}
+	if(hardend_month.length == 1) {hardend_month = '0'.concat(hardend_month)}
+	
+	if(start_date_day.length == 1) {start_date_day = '0'.concat(start_date_day)}
+	if(actstart_day.length == 1) {actstart_day = '0'.concat(actstart_day)}
+	if(expend_day.length == 1) {expend_day = '0'.concat(expend_day)}
+	if(hardend_day.length == 1) {hardend_day = '0'.concat(hardend_day)}
+	
+	// Replace missingg values with zeros
 	if(start_date_day == '' || start_date_day == undefined) 	{start_date_day = '00';}
 	if(start_date_month == '' || start_date_month == undefined) 	{start_date_month = '00';}
 	if(start_date_year == '' || start_date_year == undefined) 	{start_date_year = '0000';}
-	var start_date = ''.concat(start_date_day,'/',start_date_month,'/',start_date_year);
 	
 	if(actstart_day == '' || actstart_day == undefined) 	{actstart_day = '00';}
 	if(actstart_month == '' || actstart_month == undefined) 	{actstart_month = '00';}
 	if(actstart_year == '' || actstart_year == undefined) 	{actstart_year = '0000';}
-	var actstart = ''.concat(actstart_day,'/',actstart_month,'/',actstart_year);
 	
 	if(expend_day == '' || expend_day == undefined) 	{expend_day = '00';}
 	if(expend_month == '' || expend_month == undefined) 	{expend_month = '00';}
 	if(expend_year == '' || expend_year == undefined) 	{expend_year = '0000';}
-	var expend = ''.concat(expend_day,'/',expend_month,'/',expend_year);
 	
 	if(hardend_day == '' || hardend_day == undefined) 	{hardend_day = '00';}
 	if(hardend_month == '' || hardend_month == undefined) 	{hardend_month = '00';}
 	if(hardend_year == '' || hardend_year == undefined) 	{hardend_year = '0000';}
+
+	// If day, month or year are not 0000, then all others must be populated
+	if (start_date_day != '00' || start_date_month != '00' || start_date_year != '0000'){
+		if (start_date_day == '00') {start_date_day = today_day;}
+		if (start_date_month == '00') {start_date_month = today_month;}
+		if (start_date_year == '0000') {start_date_year = today_year;}
+	}
+	
+	if (actstart_day != '00' || actstart_month != '00' || actstart_year != '0000'){
+		if (actstart_day == '00') {actstart_day = today_day;}
+		if (actstart_month == '00') {actstart_month = today_month;}
+		if (actstart_year == '0000') {actstart_year = today_year;}
+	}
+	
+	if (expend_day != '00' || expend_month != '00' || expend_year != '0000'){ 
+		if (expend_day == '00') {expend_day = today_day;}
+		if (expend_month == '00') {expend_month = today_month;}
+		if (expend_year == '0000') {expend_year = today_year;}
+	}
+	
+	if (hardend_day != '00' || hardend_month != '00' || hardend_year != '0000'){ 
+		if (hardend_day == '00') {hardend_day = today_day;}
+		if (hardend_month == '00') {hardend_month = today_month;}
+		if (hardend_year == '0000') {hardend_year = today_year;}
+	}
+	
+	// Maximum days for months - 31 is already a maximum, so no need to check for that
+	var month_30 = ['04', '06', '09', '11']
+	var feb_days = ['29', '30', '31']
+	
+	if(month_30.includes(start_date_month) && start_date_day == '31') 	{start_date_day = '30'}
+	if(month_30.includes(actstart_month) && actstart_day == '31') 		{actstart_day = '30'}
+	if(month_30.includes(expend_month) && expend_day == '31') 			{expend_day = '30'}
+	if(month_30.includes(hardend_month) && hardend_day == '31') 		{hardend_day = '30'}
+	
+	if(start_date_month == '02' && feb_days.includes(start_date_day))	{start_date_day = '28'}
+	if(actstart_month == '02' && feb_days.includes(actstart_day))		{actstart_day = '28'}
+	if(expend_month == '02' && feb_days.includes(expend_day))			{expend_day = '28'}
+	if(hardend_month == '02' && feb_days.includes(hardend_day))			{hardend_day = '28'}
+	
+	
+	// Generate dates
+	var start_date = ''.concat(start_date_day,'/',start_date_month,'/',start_date_year);
+	var actstart = ''.concat(actstart_day,'/',actstart_month,'/',actstart_year);
+	var expend = ''.concat(expend_day,'/',expend_month,'/',expend_year);
 	var hardend = ''.concat(hardend_day,'/',hardend_month,'/',hardend_year);
+	
 	
 	// Get the latest update
 	if(new_update != '' && new_update != undefined){var update = new_update;}

@@ -95,9 +95,9 @@
 			<div class="left30"><label for="start_date_day">Intended start date:&nbsp; &nbsp;</label></div>
 			<div class="right70">
 			
-			<input type="number" id = "start_date_day" name="start_date_day" class="form_input" style="width:10%;" placeholder="DD"  {% if dates[0] != '00' %}value= "{{dates[0] | safe}}" {% endif %} />
-			<input type="number" id = "start_date_month" name="start_date_month" class="form_input" style="width:10%;" placeholder="MM"  {% if dates[1] != '00' %}value= "{{dates[1]  | safe}}" {% endif %} />
-			<input type="number" id = "start_date_year" name="start_date_year" class="form_input" style="width:20%;" placeholder="YYYY"  {% if dates[2] != '0000' %}value= "{{dates[2]  | safe}}" {% endif %} />
+			<input type="number" id = "start_date_day" name="start_date_day" class="form_input" style="width:10%;" placeholder="DD" min="1" max="31"  {% if dates[0] != '00' %}value= "{{dates[0] | safe}}" {% endif %} />
+			<input type="number" id = "start_date_month" name="start_date_month" class="form_input" style="width:10%;" placeholder="MM" min="1" max="12"  {% if dates[1] != '00' %}value= "{{dates[1]  | safe}}" {% endif %} />
+			<input type="number" id = "start_date_year" name="start_date_year" class="form_input" style="width:20%;" placeholder="YYYY" min="2019" max="2025" {% if dates[2] != '0000' %}value= "{{dates[2]  | safe}}" {% endif %} />
 			
 			</div>
 			<div class="clear"></div>
@@ -107,9 +107,9 @@
 			<div class="left30"><label for="actstart_day">Actual start date:&nbsp; &nbsp;</label></div>
 			<div class="right70">
 			
-			<input type="number" id = "actstart_day" name="actstart_day" class="form_input" style="width:10%;" placeholder="DD"  {% if dates[3] != '00' %}value= "{{dates[3] | safe}}" {% endif %}  />
-			<input type="number" id = "actstart_month" name="actstart_month" class="form_input" style="width:10%;" placeholder="MM" {% if dates[4] != '00' %} value= "{{dates[4]  | safe}}"{% endif %}  />
-			<input type="number" id = "actstart_year" name="actstart_year" class="form_input" style="width:20%;" placeholder="YYYY" {% if dates[5] != '0000' %} value= "{{dates[5]  | safe}}" {% endif %} />
+			<input type="number" id = "actstart_day" name="actstart_day" class="form_input" style="width:10%;" placeholder="DD" min="1" max="31"  {% if dates[3] != '00' %}value= "{{dates[3] | safe}}" {% endif %}  />
+			<input type="number" id = "actstart_month" name="actstart_month" class="form_input" style="width:10%;" placeholder="MM" min="1" max="12" {% if dates[4] != '00' %} value= "{{dates[4]  | safe}}"{% endif %}  />
+			<input type="number" id = "actstart_year" name="actstart_year" class="form_input" style="width:20%;" placeholder="YYYY" min="2019" max="2025" {% if dates[5] != '0000' %} value= "{{dates[5]  | safe}}" {% endif %} />
 			
 			</div>
 			<div class="clear"></div>
@@ -119,9 +119,9 @@
 			<div class="left30"><label for="expend_day">Expected end date:&nbsp; &nbsp;</label></div>
 			<div class="right70">
 			
-			<input type="number" id = "expend_day" name="expend_day" class="form_input" style="width:10%;" placeholder="DD" {% if dates[6] != '00' %} value= "{{dates[6]  | safe}}" {% endif %} />
-			<input type="number" id = "expend_month" name="expend_month" class="form_input" style="width:10%;" placeholder="MM" {% if dates[7] != '00' %} value= "{{dates[7]  | safe}}"  {% endif %}/>
-			<input type="number" id = "expend_year" name="expend_year" class="form_input" style="width:20%;" placeholder="YYYY"  {% if dates[8] != '0000' %}value= "{{dates[8]  | safe}}" {% endif %} />
+			<input type="number" id = "expend_day" name="expend_day" class="form_input" style="width:10%;" placeholder="DD" min="1" max="31" {% if dates[6] != '00' %} value= "{{dates[6]  | safe}}" {% endif %} />
+			<input type="number" id = "expend_month" name="expend_month" class="form_input" style="width:10%;" placeholder="MM" min="1" max="12" {% if dates[7] != '00' %} value= "{{dates[7]  | safe}}"  {% endif %}/>
+			<input type="number" id = "expend_year" name="expend_year" class="form_input" style="width:20%;" placeholder="YYYY"  min="2019" max="2025" {% if dates[8] != '0000' %}value= "{{dates[8]  | safe}}" {% endif %} />
 			
 			</div>
 			<div class="clear"></div>
@@ -131,9 +131,9 @@
 			<div class="left30"><label for="hardend_day">Hard deadline:&nbsp; &nbsp;</label></div>
 			<div class="right70">
 			
-			<input type="number" id = "actstart_day" name="hardend_day" class="form_input" style="width:10%;" placeholder="DD"  {% if dates[9] != '00' %}value= "{{dates[9]  | safe}}" {% endif %} />
-			<input type="number" id = "actstart_month" name="hardend_month" class="form_input" style="width:10%;" placeholder="MM"  {% if dates[10] != '00' %}value= "{{dates[10]  | safe}}" {% endif %} />
-			<input type="number" id = "actstart_year" name="hardend_year" class="form_input" style="width:20%;" placeholder="YYYY"  {% if dates[11] != '0000' %}value= "{{dates[11]  | safe}}" {% endif %} />
+			<input type="number" id = "actstart_day" name="hardend_day" class="form_input" style="width:10%;" placeholder="DD" min="1" max="31" {% if dates[9] != '00' %}value= "{{dates[9]  | safe}}" {% endif %} />
+			<input type="number" id = "actstart_month" name="hardend_month" class="form_input" style="width:10%;" placeholder="MM"  min="1" max="12" {% if dates[10] != '00' %}value= "{{dates[10]  | safe}}" {% endif %} />
+			<input type="number" id = "actstart_year" name="hardend_year" class="form_input" style="width:20%;" placeholder="YYYY" min="2019" max="2025" {% if dates[11] != '0000' %}value= "{{dates[11]  | safe}}" {% endif %} />
 			
 			</div>
 			<div class="clear"></div>
