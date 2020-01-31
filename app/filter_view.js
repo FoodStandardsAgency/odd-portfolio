@@ -45,8 +45,9 @@ function filter_view (req, res){
 		var text = text.concat('(project_name ILIKE $1 or project_name ILIKE $2 or project_name ILIKE $3 or project_name ILIKE $4 or project_id ILIKE $4) and  '); 
 		values.push(project_name1, project_name2, project_name3, project_name4);
 	}
-	if(phase != 'none' && phase != 'nback')  	{ var i = i+1; var text = text.concat('phase = $',i,' and  '); values.push(phase);}
+	if(phase != 'none' && phase != 'nback' && phase != 'dab')  	{ var i = i+1; var text = text.concat('phase = $',i,' and  '); values.push(phase);}
 	if(phase == 'nback')  	{ var text = text.concat('phase != \'backlog\' and  ');}
+	if(phase == 'dab')  	{ var text = text.concat('phase in (\'discovery\', \'alpha\', \'beta\') and  ');}
 	if(rag != 'none')  		{ var i = i+1; var text = text.concat('rag = $',i,' and  '); values.push(rag);}
 	if(pgroup != 'none')  	{ var i = i+1; var text = text.concat('pgroup = $',i,' and  '); values.push(pgroup);}
 	if(category != 'none')  { var i = i+1; var text = text.concat('category = $',i,' and  '); values.push(category);}
