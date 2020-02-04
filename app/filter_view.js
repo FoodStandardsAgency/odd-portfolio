@@ -18,6 +18,7 @@ function filter_view (req, res){
 	var no_updates		= req.body.no_updates
 	var from			= req.body.update_date_from
 	var to 				= req.body.update_date_to
+	var new_projects	= req.body.new_projects
 	
 	if(update_date == undefined) 	{update_date = '';}
 	if(no_updates == undefined) 	{no_updates = 'none';}
@@ -48,6 +49,7 @@ function filter_view (req, res){
 	if(phase != 'none' && phase != 'nback' && phase != 'dab')  	{ var i = i+1; var text = text.concat('phase = $',i,' and  '); values.push(phase);}
 	if(phase == 'nback')  	{ var text = text.concat('phase != \'backlog\' and  ');}
 	if(phase == 'dab')  	{ var text = text.concat('phase in (\'discovery\', \'alpha\', \'beta\') and  ');}
+	if(new_projects == 'y') { var text = text.concat('min_time > now() - interval \'14 days\' and  ');}
 	if(rag != 'none')  		{ var i = i+1; var text = text.concat('rag = $',i,' and  '); values.push(rag);}
 	if(pgroup != 'none')  	{ var i = i+1; var text = text.concat('pgroup = $',i,' and  '); values.push(pgroup);}
 	if(category != 'none')  { var i = i+1; var text = text.concat('category = $',i,' and  '); values.push(category);}
@@ -85,6 +87,7 @@ function filter_view (req, res){
 			"data": result.rows,
 			"project_cnt": result.rowCount,
 			"form_values": form_values,
+			"new_projects": new_projects,
 			"sess": req.session
 		})
 	)

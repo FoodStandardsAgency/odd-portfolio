@@ -17,7 +17,9 @@ const q = {
 	unmatched_leads: 'select distinct oddlead, oddlead_email from latest_projects where g6team is null and oddlead != $1 order by oddlead_email',
 	odd_people: 'select * from odd_people order by g6team, surname',
 	
-	latest_projects:	'SELECT timestamp, project_id, project_name, project_size, short_desc, onhold, phase, category, subcat, rag, oddlead, oddlead_email, oddlead_role, pgroup, priority_main, funded, confidence, priorities, benefits, criticality, budgettype, budget, spent, documents, link, team, rels, dependencies, start_date, actstart, expend, hardend from latest_projects order by timestamp desc'
+	latest_projects:	'SELECT timestamp, project_id, project_name, project_size, short_desc, onhold, phase, category, subcat, rag, oddlead, oddlead_email, oddlead_role, pgroup, priority_main, funded, confidence, priorities, benefits, criticality, budgettype, budget, spent, documents, link, team, rels, dependencies, start_date, actstart, expend, hardend from latest_projects order by timestamp desc',
+	
+	new_projects:		'SELECT * from latest_projects where phase != $1 and min_time > now() - (interval \'14 days\')'
 }
 
 // Export promises
@@ -33,4 +35,5 @@ module.exports = {
 	generic_query: 		(text, params) => pool.query(text, params),
 	unmatched_leads:	(text, params) => pool.query(q.unmatched_leads, ['']),
 	odd_people:			(text, params) => pool.query(q.odd_people),
+	new_projects:		(text, params) => pool.query(q.new_projects, ['completed']),
 }

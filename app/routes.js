@@ -272,6 +272,19 @@ router.get('/status/', requireLogin, function (req, res) {
 	.catch();	
 });
 
+router.get('/new_projects/', requireLogin, function (req, res) {	
+	queries.new_projects()
+	.then((result) => {
+		res.render('index', {
+			"data": nestedGroupBy(result.rows, ['g6team', 'phase']),
+			"counts": _.countBy(result.rows, 'phase'),
+			"themes": config.teams,
+			"phases":config.phases,
+			"sess": req.session
+		});
+	});	
+});
+
 router.get('/archived', requireLogin, function (req, res) {
 	queries.completed_projects()
 	.then((result) => {

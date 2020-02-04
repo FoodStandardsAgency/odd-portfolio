@@ -8,7 +8,7 @@
 		
 		
 		{%if sess.user == 'portfolio'%}
-		<a href="/filter-view">Filter</a> or <a href="/portfolio-add">add</a> projects. <br /> <a href="/add-supplier">Add suppliers</a>, <a href="/odd_people/view">view all ODD leads</a> or <a href="/download/csv">download CSV</a>.
+		<a href="/filter-view">Filter</a> or <a href="/portfolio-add">add</a> projects. <br /> <a href="/new_projects">View new projects</a>, <a href="/add-supplier">add suppliers</a>, <a href="/odd_people/view">view all ODD leads</a> or <a href="/download/csv">download CSV</a>.
 		{% else %}
 		You can also <a href="/filter-view">filter projects</a>.
 		{% endif %}</p>
@@ -54,7 +54,12 @@
 		<ul class="link-list border-{{phase}}">
 		
 		{% for project in phaseProjects %}
-		<li><a href="/projects/{{ project.project_id }}">{{ project.project_name | safe }} {{ projects. priority }}</a></li>
+		<li>
+		<a href="/projects/{{ project.project_id }}">{{ project.project_name | safe }}</a>
+		{% if project.new_flag == 'Y' %}
+		<span style="background-color:#007FB2; color:white; font-size:10px; padding 3px; border-radius:3px;">NEW</span>
+		{% endif %}	
+		</li>
 		{% endfor %}
 		
 		</ul>
