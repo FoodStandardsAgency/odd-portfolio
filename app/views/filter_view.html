@@ -199,6 +199,18 @@
 			</div>
 			<div class="clear"></div>
 			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="new_projects">Show only new projects:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="new_projects" class="form_input">
+					<option value="none" {% if new_projects == 'none' %}	selected {% endif %}>None selected</option>
+					<option value="y" 	 {% if new_projects == 'y' %}	selected {% endif %}>Yes</option>
+					<option value="n" 	 {% if new_projects == 'n' %}	selected {% endif %}>No</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
 			{% endif %}
 			
 			<input name="form_type" 		value="{{ form_type }}" 			hidden />

@@ -15,7 +15,12 @@
 	<div class="clear"></div>
 	</div>
 
-	<h1 class="heading-xlarge" style="margin-bottom:15px;">{{ data.project_name | safe }}</h1><br />
+	<h1 class="heading-xlarge" style="margin-bottom:15px;">{{ data.project_name | safe }}
+	{% if data.new_flag == 'Y' %}
+	<span style="background-color:#007FB2; color:white; font-size:0.5em;padding 5px; border-radius:5px;">NEW</span>
+	{% endif %}	
+	</h1>
+	<br />
 
 	<div class="grid-row">
 		<section class="column-two-thirds">
