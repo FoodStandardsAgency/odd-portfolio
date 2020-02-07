@@ -291,7 +291,8 @@ router.get('/archived', requireLogin, function (req, res) {
 		res.render('completed', {
 			"user": req.session.user,
 			"data": result.rows,
-			"counts": _.countBy(result.rows, 'phase')
+			"counts": _.countBy(result.rows, 'phase'),
+			"sess":req.session
 		});
 	})
 	.catch();	
@@ -300,7 +301,7 @@ router.get('/archived', requireLogin, function (req, res) {
 router.get('/completed', requireLogin, function (req, res){res.redirect('/archived');});
 
 router.get('/portfolio-team', requireLogin, (req, res) => {
-	if(req.session.user == 'portfolio') {res.render('team-page');}
+	if(req.session.user == 'portfolio') {res.render('team-page', {"sess": req.session});}
 	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
 });
 		

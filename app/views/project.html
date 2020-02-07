@@ -169,14 +169,15 @@
 			</p>
 			{% endif %}
 			
-			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l' or link[1] %} <br /> {% endif %}
+			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l'  or data.project_size == 'x' or link[1] %} <br /> {% endif %}
 			
-			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l' %}
+			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l'  or data.project_size == 'x' %}
 			<h3 class="heading-small">Project size </h3>
 			<p>
 			{% if data.project_size == 's' %} Small
 			{% elif data.project_size == 'm' %} Medium
 			{% elif data.project_size == 'l' %} Large
+			{% elif data.project_size == 'x' %} Extra large
 			{% endif %}
 			</p>
 			{% endif %}

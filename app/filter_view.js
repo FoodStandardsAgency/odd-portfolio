@@ -10,7 +10,7 @@ function filter_view (req, res){
 	var rag 			= req.body.rag
 	var pgroup 			= req.body.pgroup
 	var category 		= req.body.category
-	var subcat 			= req.body.subcat
+	var subcat 			= '0'
 	var g6team 			= req.body.g6team
 	var oddlead 		= req.body.oddlead
 	var team 			= req.body.team
@@ -18,7 +18,7 @@ function filter_view (req, res){
 	var no_updates		= req.body.no_updates
 	var from			= req.body.update_date_from
 	var to 				= req.body.update_date_to
-	var new_projects	= req.body.new_projects
+	var new_projects	= 'none'
 	
 	if(update_date == undefined) 	{update_date = '';}
 	if(no_updates == undefined) 	{no_updates = 'none';}

@@ -24,6 +24,7 @@ function add_supplier(req, res) {
 
 function render_add_supplier(req,res){
 	
+		var sess = req.session;
 		var text = 'SELECT * from users where access_group = $1';
 		var values = [4];
 		
@@ -36,7 +37,8 @@ function render_add_supplier(req,res){
 				
 				res.render("add_supplier", {
 					"cnt": result.rowCount,
-					"supps": supps					
+					"supps": supps,
+					"sess": sess
 				});
 			}
 			else {res.render("add_supplier");}
