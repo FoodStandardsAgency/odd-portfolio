@@ -51,23 +51,7 @@
 			</div>
 
 			<br /><br />
-			
-			<div class="container">
-			<div class="left30"><label for="direct">Directorate&nbsp; &nbsp;</label></div>					
-			<div class="right70"><select name="direct" class="form_input">
-				<option value="NONE"  {% if data.direct == 'NONE' %}	selected {% endif %}>None</option>
-				<option value="ODG"   {% if data.direct == 'ODG' %}		selected {% endif %}>Operational Delivery Group</option>
-				<option value="SLGD"  {% if data.direct == 'SLGD' %}	selected {% endif %}>Strategy, Legal and Governance</option>
-				<option value="FP"    {% if data.direct == 'FP' %}		selected {% endif %}>Finace and Performance</option>
-				<option value="RCPNI" {% if data.direct == 'RCPNI' %}	selected {% endif %}>Regulatory Compliance, People and NI</option>
-				<option value="FSP"   {% if data.direct == 'FSP' %}		selected {% endif %}>Food Safety Policy</option>
-				<option value="ODDW"  {% if data.direct == 'ODDW' %}	selected {% endif %}>Openness, Data, Digital and Wales</option>
-				<option value="SERD"  {% if data.direct == 'SERD' %}	selected {% endif %}>Science, Evidence and Research</option>
-			</select>
-			</div>
-			<div class="clear"></div>
-			</div>
-			
+					
 			<div class="container">
 			<div class="left30"><label for="phase">Phase:&nbsp; &nbsp;</label></div>								
 			<div class="right70">
@@ -105,6 +89,22 @@
 					<option value="res"  {% if data.category == 'res' %}	selected {% endif %}>Protecting data and business resilience</option>
 					<option value="sm"   {% if data.category == 'sm' %}		selected {% endif %}>Service management improvements</option>
 				</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="direct">Directorate:&nbsp; &nbsp;</label></div>					
+			<div class="right70"><select name="direct" class="form_input">
+				<option value="NONE"  {% if data.direct == 'NONE' %}	selected {% endif %}>None</option>
+				<option value="ODG"   {% if data.direct == 'ODG' %}		selected {% endif %}>Operational Delivery Group</option>
+				<option value="SLGD"  {% if data.direct == 'SLGD' %}	selected {% endif %}>Strategy, Legal and Governance</option>
+				<option value="FP"    {% if data.direct == 'FP' %}		selected {% endif %}>Finace and Performance</option>
+				<option value="RCPNI" {% if data.direct == 'RCPNI' %}	selected {% endif %}>Regulatory Compliance, People and NI</option>
+				<option value="FSP"   {% if data.direct == 'FSP' %}		selected {% endif %}>Food Safety Policy</option>
+				<option value="ODDW"  {% if data.direct == 'ODDW' %}	selected {% endif %}>Openness, Data, Digital and Wales</option>
+				<option value="SERD"  {% if data.direct == 'SERD' %}	selected {% endif %}>Science, Evidence and Research</option>
+			</select>
 			</div>
 			<div class="clear"></div>
 			</div>
