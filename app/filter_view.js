@@ -17,12 +17,13 @@ function filter_view (req, res){
 	var no_updates		= req.body.no_updates
 	var past_start		= req.body.past_start
 	var missed_dead		= req.body.missed_dead
+	var direct			= req.body.direct
 	
 	if(update_date == undefined) 	{update_date = '';}
 	if(no_updates == undefined) 	{no_updates = 'none';}
     if(g6team == undefined) 		{g6team = 'odd';}
 	
-	var form_values = [project_name, phase, rag, pgroup, category, g6team, oddlead, team, onhold, update_date, no_updates, past_start, missed_dead]
+	var form_values = [project_name, phase, rag, pgroup, category, g6team, oddlead, team, onhold, update_date, no_updates, past_start, missed_dead, direct]
  
 	// Build query 
 	var text = 'SELECT project_id, project_name, priority_main from latest_project_with_update_date where ';
@@ -62,9 +63,10 @@ function filter_view (req, res){
 			var i = i+1; var text = text.concat('(latest_update is null or update = $',i,') and  '); values.push('');
 			}
 	}
-	if(past_start != 'none') {var text = text.concat('phase = \'backlog\' and now() > to_date(start_date, \'DD/MM/YYYY\') and start_date != \'00/00/0000\' and  ');}
+	if(past_start != 'none')  {var text = text.concat('phase = \'backlog\' and now() > to_date(start_date, \'DD/MM/YYYY\') and start_date != \'00/00/0000\' and  ');}
 	if(missed_dead != 'none') {var text = text.concat('phase not in(\'live\',\'completed\') and ( (now() > to_date(expend, \'DD/MM/YYYY\') and expend != \'00/00/0000\') or (now() > to_date(hardend, \'DD/MM/YYYY\') and hardend != \'00/00/0000\') ) and  ');}
-	
+	if(direct != 'NONE')  	  {var i = i+1; var text = text.concat('direct = $',i,' and  '); values.push(direct);}
+
 	var text = text.substring(0, text.length - 6);
 	
 	if(update_date != ''){var text = text.concat(' order by latest_update ASC, priority_main desc, project_name');}

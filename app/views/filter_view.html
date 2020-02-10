@@ -91,6 +91,24 @@
 			</div>
 			<div class="clear"></div>
 			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="category">Directorate:&nbsp; &nbsp;</label></div>						
+			<div class="right70">
+			<select name="direct" class="form_input">
+				<option value="NONE"  {% if form_values[13] == 'NONE' %}	selected {% endif %}>None</option>
+				<option value="ODG"   {% if form_values[13] == 'ODG' %}		selected {% endif %}>Operational Delivery Group</option>
+				<option value="SLGD"  {% if form_values[13] == 'SLGD' %}	selected {% endif %}>Strategy, Legal and Governance</option>
+				<option value="FP"    {% if form_values[13] == 'FP' %}		selected {% endif %}>Finace and Performance</option>
+				<option value="RCPNI" {% if form_values[13] == 'RCPNI' %}	selected {% endif %}>Regulatory Compliance, People and NI</option>
+				<option value="FSP"   {% if form_values[13] == 'FSP' %}		selected {% endif %}>Food Safety Policy</option>
+				<option value="ODDW"  {% if form_values[13] == 'ODDW' %}	selected {% endif %}>Openness, Data, Digital and Wales</option>
+				<option value="SERD"  {% if form_values[13] == 'SERD' %}	selected {% endif %}>Science, Evidence and Research</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
+						
 						
 			<br /><br />
 			
