@@ -4,6 +4,7 @@ const config 	= require('./config');
 function currencyFormat(num) { return '£' + num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
 
 function project_view(req, res) {
+	var sess = req.session;
 	var user = req.session.user;
 	var group = req.session.group;
 	var project_id = req.params.project_id;
@@ -123,7 +124,8 @@ function project_view(req, res) {
 							"spent": currencyFormat(project.rows[0].spent),
 							"dates": dates,
 							"comp": comp_date,
-							"link": links
+							"link": links,
+							"sess": sess
 						});
 					});
 				});

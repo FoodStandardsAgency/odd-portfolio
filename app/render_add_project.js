@@ -1,7 +1,7 @@
 const queries 	= require('./queries');
 
 function add_project(req,res) {
-
+var sess = req.session;
 // Find next available projet id
 	queries.max_id()
 	.then((result) => {
@@ -58,7 +58,8 @@ function add_project(req,res) {
 		"next_id": id_next,
 		"title":"Add new project",
 		"button": "Add project",
-		"form_type": "ptadd"
+		"form_type": "ptadd",
+		"sess":sess
 		});
 	});
 

@@ -4,14 +4,10 @@
 
 <main id="content" role="main">
 	<p style="margin-top:30px;">
-		Order by: <a href="/"> theme</a>, <a href="/priority/"> priority</a>, <a href="/team/"> team</a>, <a href="/oddlead/"> ODD lead</a>, <a href="/rag/"> rag status</a> or <a href="/status/"> stage</a>. 
-		
-		
-		{%if sess.user == 'portfolio'%}
-		<a href="/filter-view">Filter</a> or <a href="/portfolio-add">add</a> projects. <br /> <a href="/new_projects">View new projects</a>, <a href="/add-supplier">add suppliers</a>, <a href="/odd_people/view">view all ODD leads</a> or <a href="/download/csv">download CSV</a>.
-		{% else %}
-		You can also <a href="/filter-view">filter projects</a>.
-		{% endif %}</p>
+		Order by: <a href="/"> theme</a>, <a href="/priority/"> priority</a>, <a href="/team/"> team</a>, <a href="/oddlead/"> ODD lead</a>, <a href="/rag/"> rag status</a> or <a href="/status/"> stage</a>. You can also <a href="/filter-view">filter projects</a>.
+	</p>
+	
+	{% if sess.user =='portfolio' %}<p style="background:#fff5fd; border-left: 5px solid #9F218B; padding:15px;">Portfolio team specific tools are now available in the 'Admin area'. Link in the top right corner.</p> {% endif %}
 
 	<div class="grid-row">
 		<section class="column-fifth">

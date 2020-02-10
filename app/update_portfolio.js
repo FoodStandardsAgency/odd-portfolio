@@ -4,9 +4,10 @@ function update_portfolio(req,res) {
 	
 	// Get the project_id from URL
 	const project_id = req.params.project_id;
+	var sess = req.session;
 	
 	//Pull data from the DB to pre-populate the form
-	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp, project_size, oddlead_role, budgettype from latest_projects where project_id = $1';
+	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp, project_size, oddlead_role, budgettype, direct from latest_projects where project_id = $1';
 	var values = [project_id];
 
 	// Run the query
@@ -55,7 +56,8 @@ function update_portfolio(req,res) {
 			"docs": docs,
 			"link": links,
 			"dates": dates,
-			"udates": dates_for_updates
+			"udates": dates_for_updates,
+			"sess":sess
 			});
 		})
 	.catch();

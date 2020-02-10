@@ -75,9 +75,7 @@
 				</select></div>
 			<div class="clear"></div>
 			</div>
-			
-			<br /><br />
-			
+				
 			<div class="container">
 			<div class="left30"><label for="category">Category:&nbsp; &nbsp;</label></div>						
 			<div class="right70">
@@ -94,42 +92,24 @@
 			<div class="clear"></div>
 			</div>
 			
-			
 			<div class="container">
-			<div class="left30"><label for="subcat">Sub-category:&nbsp; &nbsp;</label></div>					
-			<div class="right70"><select name="subcat" class="form_input">
-				<option value="0"  {% if form_values[5] == '0' %}		selected {% endif %}>None</option>
-				<option value="1"  {% if form_values[5] == '1' %}		selected {% endif %}>Surveillance</option>
-				<option value="2"  {% if form_values[5] == '2' %}		selected {% endif %}>Developing data services</option>
-				<option value="3"  {% if form_values[5] == '3' %}		selected {% endif %}>Managing data services</option>
-				<option value="4"  {% if form_values[5] == '4' %}		selected {% endif %}>New discoveries</option>
-				<option value="5"  {% if form_values[5] == '5' %}		selected {% endif %}>Iterating digital services</option>
-				<option value="6"  {% if form_values[5] == '6' %}		selected {% endif %}>Register a Food Business</option>
-				<option value="7"  {% if form_values[5] == '7' %}		selected {% endif %}>EU Exit</option>
-				<option value="8"  {% if form_values[5] == '8' %}		selected {% endif %}>Modernising legacy apps</option>
-				<option value="9"  {% if form_values[5] == '9' %}		selected {% endif %}>Operating System and environment upgrades</option>
-				<option value="10" {% if form_values[5] == '10' %}		selected {% endif %}>API strategy and implementation</option>
-				<option value="11" {% if form_values[5] == '11' %}		selected {% endif %}>Cloud migration</option>
-				<option value="12" {% if form_values[5] == '12' %}		selected {% endif %}>Decommissioning legacy</option>
-				<option value="13" {% if form_values[5] == '13' %}		selected {% endif %}>Embedding security by design</option>
-				<option value="14" {% if form_values[5] == '14' %}		selected {% endif %}>NFCU support</option>
-				<option value="15" {% if form_values[5] == '15' %}		selected {% endif %}>Upgrade Service Now and Automation</option>
-				<option value="16" {% if form_values[5] == '16' %}		selected {% endif %}>Contract management</option>
-				<option value="17" {% if form_values[5] == '17' %}		selected {% endif %}>Integration - sign-on, password reset etc.</option>
-				<option value="18" {% if form_values[5] == '18' %}		selected {% endif %}>Knowledge management and documentation</option>
-				<option value="19" {% if form_values[5] == '19' %}		selected {% endif %}>Unified view</option>
-				<option value="20" {% if form_values[5] == '20' %}		selected {% endif %}>Export health certification</option>
-				<option value="21" {% if form_values[5] == '21' %}		selected {% endif %}>Implementing DDaT professions</option>
-				<option value="22" {% if form_values[5] == '22' %}		selected {% endif %}>Implementing service assesments</option>
-				<option value="23" {% if form_values[5] == '23' %}		selected {% endif %}>Coaching senior leaders in Digital</option>
-				<option value="24" {% if form_values[5] == '24' %}		selected {% endif %}>Development of digital workplace</option>
-				<option value="25" {% if form_values[5] == '25' %}		selected {% endif %}>Community of digital superusers</option>
-				<option value="26" {% if form_values[5] == '26' %}		selected {% endif %}>Digital skills roadshows</option>
+			<div class="left30"><label for="category">Directorate:&nbsp; &nbsp;</label></div>						
+			<div class="right70">
+			<select name="direct" class="form_input">
+				<option value="NONE"  {% if form_values[13] == 'NONE' %}	selected {% endif %}>None</option>
+				<option value="ODG"   {% if form_values[13] == 'ODG' %}		selected {% endif %}>Operational Delivery Group</option>
+				<option value="SLGD"  {% if form_values[13] == 'SLGD' %}	selected {% endif %}>Strategy, Legal and Governance</option>
+				<option value="FP"    {% if form_values[13] == 'FP' %}		selected {% endif %}>Finace and Performance</option>
+				<option value="RCPNI" {% if form_values[13] == 'RCPNI' %}	selected {% endif %}>Regulatory Compliance, People and NI</option>
+				<option value="FSP"   {% if form_values[13] == 'FSP' %}		selected {% endif %}>Food Safety Policy</option>
+				<option value="ODDW"  {% if form_values[13] == 'ODDW' %}	selected {% endif %}>Openness, Data, Digital and Wales</option>
+				<option value="SERD"  {% if form_values[13] == 'SERD' %}	selected {% endif %}>Science, Evidence and Research</option>
 			</select>
 			</div>
 			<div class="clear"></div>
 			</div>
-			
+						
+						
 			<br /><br />
 			
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Project team</h2><br />
@@ -139,12 +119,12 @@
 			<div class="left30"><label for="g6team">Team:&nbsp; &nbsp;</label></div>				
 			<div class="right70">
 			<select name="g6team" class="form_input">
-				<option value="none"  	{% if form_values[13] == 'none' %}	  selected {% endif %}>None selected</option>
-				<option value="Data"  	{% if form_values[13] == 'Data' %}	  selected {% endif %}>Data</option>
-				<option value="Digital" {% if form_values[13] == 'Digital' %} selected {% endif %}>Digital</option>
-				<option value="KIM"  	{% if form_values[13] == 'KIM' %}	  selected {% endif %}>KIM</option>
-				<option value="IT"  	{% if form_values[13] == 'IT' %}	  selected {% endif %}>IT</option>
-				<option value="null"  	{% if form_values[13] == 'null' %}	  selected {% endif %}>Not assigned</option>
+				<option value="none"  	{% if form_values[5] == 'none' %}	  selected {% endif %}>None selected</option>
+				<option value="Data"  	{% if form_values[5] == 'Data' %}	  selected {% endif %}>Data</option>
+				<option value="Digital" {% if form_values[5] == 'Digital' %} selected {% endif %}>Digital</option>
+				<option value="KIM"  	{% if form_values[5] == 'KIM' %}	  selected {% endif %}>KIM</option>
+				<option value="IT"  	{% if form_values[5] == 'IT' %}	  selected {% endif %}>IT</option>
+				<option value="null"  	{% if form_values[5] == 'null' %}	  selected {% endif %}>Not assigned</option>
 			</select>			
 			</div>
 			<div class="clear"></div>
@@ -163,6 +143,8 @@
 			<div class="clear"></div>
 			</div>
 			
+			<br /><br />
+			
 			{% if sess.user == 'portfolio' or sess.user == 'odd' %}
 			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Updates</h2><br />
 			
@@ -171,23 +153,7 @@
 			<div class="right70"><input id="update_date" type="date" name="update_date" class="form_input" placeholder="dd/mm/yyyy" value= "{{form_values[9] | safe}}" /></div>
 			<div class="clear"></div>
 			</div>
-			
-			<div class="container">
-			<div class="left30"><label for="update_date_range">List projects with latest update between:&nbsp; &nbsp;</label></div>
-			<div class="right70">
-				<div class="container">
-					<div class="left25">From: </div>
-					<div class="right75"><input id="update_date_from" type="date" name="update_date_from" class="form_input" placeholder="From dd/mm/yyyy" value= "{{form_values[11] | safe}}" /></div>
-				<div class="clear"></div>
-				</div>
-				<div class="container">
-					<div class="left25">To: </div>
-					<div class="right75"><input id="update_date_to" type="date" name="update_date_to" class="form_input" placeholder="To dd/mm/yyyy" value= "{{form_values[12] | safe}}" /></div>
-				<div class="clear"></div>
-				</div>
-			<div class="clear"></div>
-			</div>
-			
+				
 			<div class="container">
 			<div class="left30"><label for="no_updates">Show projects with no updates:&nbsp; &nbsp;</label></div>
 			<div class="right70">
@@ -200,18 +166,35 @@
 			<div class="clear"></div>
 			</div>
 			
+			{% endif %}
+			
+			<br /><br />
+			
+			<h2 class="heading-medium" style="margin-bottom:10px; margin-left:2%;">Key dates</h2><br />
+			
 			<div class="container">
-			<div class="left30"><label for="new_projects">Show only new projects:&nbsp; &nbsp;</label></div>
+			<div class="left30"><label for="past_start">Past intended start date:&nbsp; &nbsp;</label></div>
 			<div class="right70">
-			<select name="new_projects" class="form_input">
-					<option value="none" {% if new_projects == 'none' %}	selected {% endif %}>None selected</option>
-					<option value="y" 	 {% if new_projects == 'y' %}	selected {% endif %}>Yes</option>
-					<option value="n" 	 {% if new_projects == 'n' %}	selected {% endif %}>No</option>
+			<select name="past_start" class="form_input">
+					<option value="none" {% if form_values[11] == 'none' %}	selected {% endif %}>None selected</option>
+					<option value="y" 	 {% if form_values[11] == 'y' %}	selected {% endif %}>Yes</option>
+					<option value="n" 	 {% if form_values[11] == 'n' %}	selected {% endif %}>No</option>
 			</select>
 			</div>
 			<div class="clear"></div>
 			</div>
-			{% endif %}
+			
+			<div class="container">
+			<div class="left30"><label for="missed_dead">Missed end date or deadline:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<select name="missed_dead" class="form_input">
+					<option value="none" {% if form_values[12] == 'none' %}	selected {% endif %}>None selected</option>
+					<option value="y" 	 {% if form_values[12] == 'y' %}	selected {% endif %}>Yes</option>
+					<option value="n" 	 {% if form_values[12] == 'n' %}	selected {% endif %}>No</option>
+			</select>
+			</div>
+			<div class="clear"></div>
+			</div>
 			
 			<input name="form_type" 		value="{{ form_type }}" 			hidden />
 			<br />

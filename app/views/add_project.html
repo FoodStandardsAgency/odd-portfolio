@@ -38,6 +38,7 @@
 			<option value="s" {% if data.project_size == 's' %}selected{% endif %}>Small</option>
 			<option value="m" {% if data.project_size == 'm' %}selected{% endif %}>Medium</option>
 			<option value="l" {% if data.project_size == 'l' %}selected{% endif %}>Large</option>
+			<option value="x" {% if data.project_size == 'x' %}selected{% endif %}>Extra large</option>
 			</select>
 			</div>
 			<div class="clear"></div>
@@ -50,7 +51,7 @@
 			</div>
 
 			<br /><br />
-			
+					
 			<div class="container">
 			<div class="left30"><label for="phase">Phase:&nbsp; &nbsp;</label></div>								
 			<div class="right70">
@@ -92,43 +93,22 @@
 			<div class="clear"></div>
 			</div>
 			
-			
 			<div class="container">
-			<div class="left30"><label for="subcat">Sub-category:&nbsp; &nbsp;</label></div>					
-			<div class="right70"><select name="subcat" class="form_input">
-				<option value="0"  {% if data.subcat == '0' %}		selected {% endif %}>None</option>
-				<option value="1"  {% if data.subcat == '1' %}		selected {% endif %}>Surveillance</option>
-				<option value="2"  {% if data.subcat == '2' %}		selected {% endif %}>Developing data services</option>
-				<option value="3"  {% if data.subcat == '3' %}		selected {% endif %}>Managing data services</option>
-				<option value="4"  {% if data.subcat == '4' %}		selected {% endif %}>New discoveries</option>
-				<option value="5"  {% if data.subcat == '5' %}		selected {% endif %}>Iterating digital services</option>
-				<option value="6"  {% if data.subcat == '6' %}		selected {% endif %}>Register a Food Business</option>
-				<option value="7"  {% if data.subcat == '7' %}		selected {% endif %}>EU Exit</option>
-				<option value="8"  {% if data.subcat == '8' %}		selected {% endif %}>Modernising legacy apps</option>
-				<option value="9"  {% if data.subcat == '9' %}		selected {% endif %}>Operating System and environment upgrades</option>
-				<option value="10" {% if data.subcat == '10' %}		selected {% endif %}>API strategy and implementation</option>
-				<option value="11" {% if data.subcat == '11' %}		selected {% endif %}>Cloud migration</option>
-				<option value="12" {% if data.subcat == '12' %}		selected {% endif %}>Decommissioning legacy</option>
-				<option value="13" {% if data.subcat == '13' %}		selected {% endif %}>Embedding security by design</option>
-				<option value="14" {% if data.subcat == '14' %}		selected {% endif %}>NFCU support</option>
-				<option value="15" {% if data.subcat == '15' %}		selected {% endif %}>Upgrade Service Now and Automation</option>
-				<option value="16" {% if data.subcat == '16' %}		selected {% endif %}>Contract management</option>
-				<option value="17" {% if data.subcat == '17' %}		selected {% endif %}>Integration - sign-on, password reset etc.</option>
-				<option value="18" {% if data.subcat == '18' %}		selected {% endif %}>Knowledge management and documentation</option>
-				<option value="19" {% if data.subcat == '19' %}		selected {% endif %}>Unified view</option>
-				<option value="20" {% if data.subcat == '20' %}		selected {% endif %}>Export health certification</option>
-				<option value="21" {% if data.subcat == '21' %}		selected {% endif %}>Implementing DDaT professions</option>
-				<option value="22" {% if data.subcat == '22' %}		selected {% endif %}>Implementing service assesments</option>
-				<option value="23" {% if data.subcat == '23' %}		selected {% endif %}>Coaching senior leaders in Digital</option>
-				<option value="24" {% if data.subcat == '24' %}		selected {% endif %}>Development of digital workplace</option>
-				<option value="25" {% if data.subcat == '25' %}		selected {% endif %}>Community of digital superusers</option>
-				<option value="26" {% if data.subcat == '26' %}		selected {% endif %}>Digital skills roadshows</option>
+			<div class="left30"><label for="direct">Directorate:&nbsp; &nbsp;</label></div>					
+			<div class="right70"><select name="direct" class="form_input">
+				<option value="NONE"  {% if data.direct == 'NONE' %}	selected {% endif %}>None</option>
+				<option value="ODG"   {% if data.direct == 'ODG' %}		selected {% endif %}>Operational Delivery Group</option>
+				<option value="SLGD"  {% if data.direct == 'SLGD' %}	selected {% endif %}>Strategy, Legal and Governance</option>
+				<option value="FP"    {% if data.direct == 'FP' %}		selected {% endif %}>Finace and Performance</option>
+				<option value="RCPNI" {% if data.direct == 'RCPNI' %}	selected {% endif %}>Regulatory Compliance, People and NI</option>
+				<option value="FSP"   {% if data.direct == 'FSP' %}		selected {% endif %}>Food Safety Policy</option>
+				<option value="ODDW"  {% if data.direct == 'ODDW' %}	selected {% endif %}>Openness, Data, Digital and Wales</option>
+				<option value="SERD"  {% if data.direct == 'SERD' %}	selected {% endif %}>Science, Evidence and Research</option>
 			</select>
 			</div>
 			<div class="clear"></div>
 			</div>
-			
-			
+
 			<div class="container">
 			<div class="left30"><label for="rag">RAG:&nbsp; &nbsp;</label></div>									
 			<div class="right70">

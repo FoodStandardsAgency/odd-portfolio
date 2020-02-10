@@ -10,33 +10,28 @@ function filter_view (req, res){
 	var rag 			= req.body.rag
 	var pgroup 			= req.body.pgroup
 	var category 		= req.body.category
-	var subcat 			= req.body.subcat
 	var g6team 			= req.body.g6team
 	var oddlead 		= req.body.oddlead
 	var team 			= req.body.team
 	var update_date		= req.body.update_date
 	var no_updates		= req.body.no_updates
-	var from			= req.body.update_date_from
-	var to 				= req.body.update_date_to
-	var new_projects	= req.body.new_projects
+	var past_start		= req.body.past_start
+	var missed_dead		= req.body.missed_dead
+	var direct			= req.body.direct
 	
 	if(update_date == undefined) 	{update_date = '';}
 	if(no_updates == undefined) 	{no_updates = 'none';}
-	if(from == undefined) 			{from = '';}
-	if(to == undefined) 			{to = '';}
-    if(g6team == undefined) 			{g6team = 'odd';}
+    if(g6team == undefined) 		{g6team = 'odd';}
 	
-	var form_values = [project_name, phase, rag, pgroup, category, subcat, oddlead, team, onhold, update_date, no_updates, from, to, g6team]
-
+	var form_values = [project_name, phase, rag, pgroup, category, g6team, oddlead, team, onhold, update_date, no_updates, past_start, missed_dead, direct]
+ 
 	// Build query 
 	var text = 'SELECT project_id, project_name, priority_main from latest_project_with_update_date where ';
 	var values = [];
 	var i = 0;
 	
 	if(update_date != '') 	{var upt_dt 	= moment(update_date, "YYYY/MM/DD");}
-	if(from != '') 			{var from 		= moment(from, "YYYY/MM/DD");}
-	if(to != '') 			{var to 		= moment(to, "YYYY/MM/DD").add(23, 'hours').add(59, 'minutes');}
-	
+		
 	if(project_name != '') 	{ 
 		var project_name1 = '% '.concat(project_name, ' %');
 		var project_name2 = '% '.concat(project_name, ''); 
@@ -49,17 +44,14 @@ function filter_view (req, res){
 	if(phase != 'none' && phase != 'nback' && phase != 'dab')  	{ var i = i+1; var text = text.concat('phase = $',i,' and  '); values.push(phase);}
 	if(phase == 'nback')  	{ var text = text.concat('phase != \'backlog\' and  ');}
 	if(phase == 'dab')  	{ var text = text.concat('phase in (\'discovery\', \'alpha\', \'beta\') and  ');}
-	if(new_projects == 'y') { var text = text.concat('min_time > now() - interval \'14 days\' and  ');}
 	if(rag != 'none')  		{ var i = i+1; var text = text.concat('rag = $',i,' and  '); values.push(rag);}
 	if(pgroup != 'none')  	{ var i = i+1; var text = text.concat('pgroup = $',i,' and  '); values.push(pgroup);}
 	if(category != 'none')  { var i = i+1; var text = text.concat('category = $',i,' and  '); values.push(category);}
-	if(subcat != '0')  		{ var i = i+1; var text = text.concat('subcat = $',i,' and  '); values.push(subcat);}
 	if(g6team != 'none' & g6team != 'odd' & g6team != 'null')  	{ var i = i+1; var text = text.concat('g6team = $',i,' and  ');values.push(g6team);}
 	if(g6team == 'null' )  	{ var text = text.concat('g6team is null and  ');}
 	if(oddlead != '')  		{ var oddlead = '%'.concat(oddlead, '%'); var i = i+1; var text = text.concat('oddlead ILIKE $',i,' and  '); values.push(oddlead);}
 	if(team != '')  		{ var team = '%'.concat(team, '%'); var i = i+1; var text = text.concat('(team ILIKE $',i,' or oddlead ILIKE $',i,')  and  '); values.push(team);}
 	if(onhold != 'none')  	{ var i = i+1; var text = text.concat('onhold = $',i,' and  '); values.push(onhold);}
-	if(from != '' && to != ''){var i = i+2; var text = text.concat('(latest_update>= $',i-1,' and latest_update<= $',i,') and  '); values.push(from); values.push(to);}
 	if(update_date != '')	{ var i = i+2; var text = text.concat('(latest_update < $',i-1,' and latest_update is not null ) and update != $',i,' and  '); values.push(upt_dt); values.push('')}
 	if(no_updates == 'y')  { 
 	
@@ -71,7 +63,10 @@ function filter_view (req, res){
 			var i = i+1; var text = text.concat('(latest_update is null or update = $',i,') and  '); values.push('');
 			}
 	}
-	
+	if(past_start != 'none')  {var text = text.concat('phase = \'backlog\' and now() > to_date(start_date, \'DD/MM/YYYY\') and start_date != \'00/00/0000\' and  ');}
+	if(missed_dead != 'none') {var text = text.concat('phase not in(\'live\',\'completed\') and ( (now() > to_date(expend, \'DD/MM/YYYY\') and expend != \'00/00/0000\') or (now() > to_date(hardend, \'DD/MM/YYYY\') and hardend != \'00/00/0000\') ) and  ');}
+	if(direct != 'NONE')  	  {var i = i+1; var text = text.concat('direct = $',i,' and  '); values.push(direct);}
+
 	var text = text.substring(0, text.length - 6);
 	
 	if(update_date != ''){var text = text.concat(' order by latest_update ASC, priority_main desc, project_name');}
@@ -87,7 +82,6 @@ function filter_view (req, res){
 			"data": result.rows,
 			"project_cnt": result.rowCount,
 			"form_values": form_values,
-			"new_projects": new_projects,
 			"sess": req.session
 		})
 	)
