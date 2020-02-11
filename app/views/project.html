@@ -139,11 +139,15 @@
 			<p>
 				{% if data.direct == 'ODG' %} Operational Delivery Group
 				{% elif data.direct == 'SLGD' %} Strategy, Legal and Governance
-				{% elif data.direct == 'FP' %} Finace and Performance
-				{% elif data.direct == 'RCPNI' %} Regulatory Compliance, People and NI
+				{% elif data.direct == 'FP' %} Finance and Performance
+				{% elif data.direct == 'RC' %} Regulatory Compliance
+				{% elif data.direct == 'PEOP' %} People
+				{% elif data.direct == 'NI' %} Northern Ireland
 				{% elif data.direct == 'FSP' %} Food Safety Policy
-				{% elif data.direct == 'ODDW' %} Openness, Data, Digital and Wales
+				{% elif data.direct == 'ODD' %} Openness, Data and Digital
+				{% elif data.direct == 'WAL' %} Wales
 				{% elif data.direct == 'SERD' %} Science, Evidence and Research
+				{% elif data.direct == 'UK' %} UK-wide
 				{% endif %}
 			</p>
 			{% endif %}
