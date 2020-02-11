@@ -137,17 +137,20 @@
 			{% if data.direct and data.direct != 'NONE' %}
 			<h3 class="heading-small">Directorate</h3>
 			<p>
-				{% if data.direct == 'ODG' %} Operational Delivery Group
-				{% elif data.direct == 'SLGD' %} Strategy, Legal and Governance
-				{% elif data.direct == 'FP' %} Finance and Performance
-				{% elif data.direct == 'RC' %} Regulatory Compliance
-				{% elif data.direct == 'PEOP' %} People
-				{% elif data.direct == 'NI' %} Northern Ireland
-				{% elif data.direct == 'FSP' %} Food Safety Policy
-				{% elif data.direct == 'ODD' %} Openness, Data and Digital
-				{% elif data.direct == 'WAL' %} Wales
-				{% elif data.direct == 'SERD' %} Science, Evidence and Research
-				{% elif data.direct == 'UK' %} UK-wide
+				  {% if data.direct == 'COMMS' %} 	Communications
+				  {% elif data.direct == 'IR' %}	Incidents & Resilience
+				  {% elif data.direct == 'FO' %}	Field Operations
+				  {% elif data.direct == 'FP' %}	Finance & Performance
+				  {% elif data.direct == 'FSP' %}	Food Safety Policy
+				  {% elif data.direct == 'FSA' %}	FSA wide
+				  {% elif data.direct == 'NFCU' %}	National Food Crime Unit
+				  {% elif data.direct == 'NI' %}	Northern Ireland
+				  {% elif data.direct == 'ODD' %}	Openness, Data & Digital
+				  {% elif data.direct == 'PEOP' %}	People
+				  {% elif data.direct == 'RC' %}	Regulatory Compliance
+				  {% elif data.direct == 'SERD' %}	Science, Evidence & Research
+				  {% elif data.direct == 'SLG' %}	Strategy, Legal & Governance
+				  {% elif data.direct == 'WAL' %}	Wales
 				{% endif %}
 			</p>
 			{% endif %}
