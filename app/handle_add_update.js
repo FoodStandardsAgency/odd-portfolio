@@ -24,6 +24,10 @@ function handle_form(req, res) {
 	var actstart_month = xss(req.body.actstart_month)
 	var actstart_year = xss(req.body.actstart_year)
 	
+	var expendp_day = xss(req.body.expendp_day)
+	var expendp_month = xss(req.body.expendp_month)
+	var expendp_year = xss(req.body.expendp_year)
+	
 	var expend_day = xss(req.body.expend_day)
 	var expend_month = xss(req.body.expend_month)
 	var expend_year = xss(req.body.expend_year)
@@ -31,6 +35,8 @@ function handle_form(req, res) {
 	var hardend_day = xss(req.body.hardend_day)
 	var hardend_month = xss(req.body.hardend_month)
 	var hardend_year = xss(req.body.hardend_year)
+	
+	var p_comp = xss(req.body.p_comp)
 	
 	var update = xss(req.body.update)
 	var new_update = xss(req.body.new_update)
@@ -101,6 +107,9 @@ function handle_form(req, res) {
 	else if(parseInt(priority,10) >= 5)		{var pgroup = "medium-low";}
 	else 									{var pgroup = "low";}
 	
+	// Handle empty proportion fields
+	if(p_comp == "") {p_comp = 0};
+	
 	// Validate dates
 	
 	var currentdate = new Date(); 
@@ -111,11 +120,13 @@ function handle_form(req, res) {
 	// Month & day must be 2-digit format; year already in in 4-digit format
 	if(start_date_month.length == 1) {start_date_month = '0'.concat(start_date_month)}
 	if(actstart_month.length == 1) {actstart_month = '0'.concat(actstart_month)}
+	if(expendp_month.length == 1) {expendp_month = '0'.concat(expendp_month)}
 	if(expend_month.length == 1) {expend_month = '0'.concat(expend_month)}
 	if(hardend_month.length == 1) {hardend_month = '0'.concat(hardend_month)}
 	
 	if(start_date_day.length == 1) {start_date_day = '0'.concat(start_date_day)}
 	if(actstart_day.length == 1) {actstart_day = '0'.concat(actstart_day)}
+	if(expendp_day.length == 1) {expendp_day = '0'.concat(expendp_day)}
 	if(expend_day.length == 1) {expend_day = '0'.concat(expend_day)}
 	if(hardend_day.length == 1) {hardend_day = '0'.concat(hardend_day)}
 	
@@ -127,6 +138,10 @@ function handle_form(req, res) {
 	if(actstart_day == '' || actstart_day == undefined) 	{actstart_day = '00';}
 	if(actstart_month == '' || actstart_month == undefined) 	{actstart_month = '00';}
 	if(actstart_year == '' || actstart_year == undefined) 	{actstart_year = '0000';}
+	
+	if(expendp_day == '' || expendp_day == undefined) 	{expendp_day = '00';}
+	if(expendp_month == '' || expendp_month == undefined) 	{expendp_month = '00';}
+	if(expendp_year == '' || expendp_year == undefined) 	{expendp_year = '0000';}
 	
 	if(expend_day == '' || expend_day == undefined) 	{expend_day = '00';}
 	if(expend_month == '' || expend_month == undefined) 	{expend_month = '00';}
@@ -149,6 +164,12 @@ function handle_form(req, res) {
 		if (actstart_year == '0000') {actstart_year = today_year;}
 	}
 	
+	if (expendp_day != '00' || expendp_month != '00' || expendp_year != '0000'){ 
+		if (expendp_day == '00') {expendp_day = today_day;}
+		if (expendp_month == '00') {expendp_month = today_month;}
+		if (expendp_year == '0000') {expendp_year = today_year;}
+	}
+	
 	if (expend_day != '00' || expend_month != '00' || expend_year != '0000'){ 
 		if (expend_day == '00') {expend_day = today_day;}
 		if (expend_month == '00') {expend_month = today_month;}
@@ -167,11 +188,13 @@ function handle_form(req, res) {
 	
 	if(month_30.includes(start_date_month) && start_date_day == '31') 	{start_date_day = '30'}
 	if(month_30.includes(actstart_month) && actstart_day == '31') 		{actstart_day = '30'}
+	if(month_30.includes(expendp_month) && expendp_day == '31') 		{expendp_day = '30'}
 	if(month_30.includes(expend_month) && expend_day == '31') 			{expend_day = '30'}
 	if(month_30.includes(hardend_month) && hardend_day == '31') 		{hardend_day = '30'}
 	
 	if(start_date_month == '02' && feb_days.includes(start_date_day))	{start_date_day = '28'}
 	if(actstart_month == '02' && feb_days.includes(actstart_day))		{actstart_day = '28'}
+	if(expendp_month == '02' && feb_days.includes(expendp_day))			{expendp_day = '28'}
 	if(expend_month == '02' && feb_days.includes(expend_day))			{expend_day = '28'}
 	if(hardend_month == '02' && feb_days.includes(hardend_day))			{hardend_day = '28'}
 	
@@ -179,6 +202,7 @@ function handle_form(req, res) {
 	// Generate dates
 	var start_date = ''.concat(start_date_day,'/',start_date_month,'/',start_date_year);
 	var actstart = ''.concat(actstart_day,'/',actstart_month,'/',actstart_year);
+	var expendp = ''.concat(expendp_day,'/',expendp_month,'/',expendp_year);
 	var expend = ''.concat(expend_day,'/',expend_month,'/',expend_year);
 	var hardend = ''.concat(hardend_day,'/',hardend_month,'/',hardend_year);
 	
@@ -188,8 +212,11 @@ function handle_form(req, res) {
 	
 	// Run insert query
 	
-	var insert_query = 'INSERT INTO projects(project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, dependencies, project_size, oddlead_role, budgettype, direct) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35)';
-	var values = [project_id, project_name, start_date, project_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, deps, project_size, oddlead_role, budgettype, direct];
+	var insert_query = 'INSERT INTO projects(project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, dependencies, project_size, oddlead_role, budgettype, direct, expendp, p_comp) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37)';
+	var values = [project_id, project_name, start_date, project_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, pgroup, rels, team, onhold, expend, hardend, actstart, deps, project_size, oddlead_role, budgettype, direct, expendp, p_comp];
+	
+	console.log(insert_query)
+	console.log(values)
 		
 	queries.generic_query(insert_query, values)
 	.then(console.log("INSERT query run - project update or addition"))

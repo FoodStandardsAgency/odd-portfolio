@@ -178,17 +178,26 @@
 
 			{% endif %}
 			
-			{% if dates[10] or dates[11] or dates[12] or dates[13] or comp %}
+			{% if dates[10] or dates[11] or dates[12] or dates[13] or dates [14] or comp %}
 			<br /><h3 class="heading-small">Key dates</h3>
 			<p>
 			{% if dates[10] %}Intended start date:<br /> {{ dates[0] }} {{ dates[1] }} <br /><br />{% endif %}
 			{% if dates[11] %}Date started:<br /> {{ dates[2] }} {{ dates[3] }} {{ dates[4] }}<br /><br />{% endif %}
-			{% if dates[12] %}Intended completion date:<br /> {{ dates[5] }} {{ dates[6] }} <br /><br />{% endif %}
+			{% if dates[14] %}Phase completion date:<br /> {{ dates[15] }} {{ dates[16] }} {{ dates[17] }} <br /><br />{% endif %}
+			{% if dates[12] %}Project completion date:<br /> {{ dates[5] }} {{ dates[6] }} <br /><br />{% endif %}
 			{% if dates[13] %}Hard deadline:<br /> {{ dates[7] }} {{ dates[8] }} {{ dates[9] }}<br /><br />{% endif %}
 			{% if comp %}Completed:<br /> {{ comp[2] }} {{ comp[1] }} {{ comp[3] }}<br /><br />{% endif %}
 			</p>
+			
 			{% endif %}
 			
+			{% if data.p_comp > 0 %}
+			<h3 class="heading-small">Percentage completed</h3>
+			<p>
+			{{ data.p_comp }}%
+			</p>
+			{% endif %}
+					
 			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l'  or data.project_size == 'x' or link[1] %} <br /> {% endif %}
 			
 			{% if data.project_size == 's' or data.project_size == 'm' or data.project_size == 'l'  or data.project_size == 'x' %}

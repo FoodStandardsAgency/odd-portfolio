@@ -170,7 +170,19 @@
 			</div>
 			
 			<div class="container">
-			<div class="left30"><label for="expend_day">Expected end date:&nbsp; &nbsp;</label></div>
+			<div class="left30"><label for="expendp_day">Expected current phase end date:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			
+			<input type="number" id = "expendp_day" name="expendp_day" class="form_input" style="width:10%;" placeholder="DD" min="1" max="31" {% if dates[6] != '00' %} value= "{{dates[12]  | safe}}" {% endif %} />
+			<input type="number" id = "expendp_month" name="expendp_month" class="form_input" style="width:10%;" placeholder="MM" min="1" max="12"{% if dates[7] != '00' %} value= "{{dates[13]  | safe}}"  {% endif %}/>
+			<input type="number" id = "expendp_year" name="expendp_year" class="form_input" style="width:20%;" placeholder="YYYY"  min="2016" max="2025" {% if dates[8] != '0000' %}value= "{{dates[14]  | safe}}" {% endif %} />
+			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="expend_day">Expected project end date:&nbsp; &nbsp;</label></div>
 			<div class="right70">
 			
 			<input type="number" id = "expend_day" name="expend_day" class="form_input" style="width:10%;" placeholder="DD" min="1" max="31" {% if dates[6] != '00' %} value= "{{dates[6]  | safe}}" {% endif %} />
@@ -189,6 +201,14 @@
 			<input type="number" id = "actstart_month" name="hardend_month" class="form_input" style="width:10%;" placeholder="MM" min="1" max="12" {% if dates[10] != '00' %}value= "{{dates[10]  | safe}}" {% endif %} />
 			<input type="number" id = "actstart_year" name="hardend_year" class="form_input" style="width:20%;" placeholder="YYYY" min="2016" max="2025" {% if dates[11] != '0000' %}value= "{{dates[11]  | safe}}" {% endif %} />
 			
+			</div>
+			<div class="clear"></div>
+			</div>
+			
+			<div class="container">
+			<div class="left30"><label for="p_comp">Percentage complete:&nbsp; &nbsp;</label></div>
+			<div class="right70">
+			<input id="p_comp" type="number" min="0" max="100" name="p_comp" class="form_input" style="width:10%;" placeholder="25" value= "{{data.p_comp}}" /> %
 			</div>
 			<div class="clear"></div>
 			</div>

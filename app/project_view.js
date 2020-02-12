@@ -62,6 +62,13 @@ function project_view(req, res) {
 			var asd_year = project.rows[0].actstart.slice(6,10);
 		} else   {var asd_month = ''; var asd_year = '';}
 		
+		if(project.rows[0].expendp != null && project.rows[0].expendp != '00/00/0000'){
+			var eedp = true;
+			var eedp_day = project.rows[0].expendp.slice(0,2);
+			var eedp_month = months[parseInt(project.rows[0].expendp.slice(3,5))-1]; 	   
+			var eedp_year = project.rows[0].expendp.slice(6,10);} 	
+		else   {var eed_month = ''; var eed_year = '';}
+		
 		if(project.rows[0].expend != null && project.rows[0].expend != '00/00/0000'){
 			var eed = true;
 			var eed_month = months[parseInt(project.rows[0].expend.slice(3,5))-1]; 	   
@@ -75,7 +82,7 @@ function project_view(req, res) {
 			var aed_year = project.rows[0].hardend.slice(6,10);} 	
 		else   {var aed_month = ''; var aed_year = '';}
 		
-		var dates = [isd_month, isd_year, asd_day, asd_month, asd_year, eed_month, eed_year, aed_day, aed_month, aed_year, isd, asd, eed, aed];
+		var dates = [isd_month, isd_year, asd_day, asd_month, asd_year, eed_month, eed_year, aed_day, aed_month, aed_year, isd, asd, eed, aed, eedp, eedp_day, eedp_month, eedp_year];
 		
 		/*Budget type*/
 		if(project.rows[0].budgettype == 'none' || project.rows[0].budgettype == undefined){var budgettype = 'Not set'}
