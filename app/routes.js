@@ -430,6 +430,63 @@ router.get('/download/csv', requireLogin, function(req,res){
 	if(req.session.user == 'portfolio') {
 		queries.latest_projects()
 		.then( (result) => {
+						
+			for (i = 0; i < result.rows.length; i++){
+			/*Project size*/
+			if(result.rows[i].project_size == 's') {result.rows[i].project_size = 'Small'}
+			else if(result.rows[i].project_size == 'm') {result.rows[i].project_size = 'Medium'}
+			else if(result.rows[i].project_size == 'l') {result.rows[i].project_size = 'Large'}
+			else if(result.rows[i].project_size == 'x') {result.rows[i].project_size = 'Extra Large'}
+			else {result.rows[i].project_size = 'Not set'}
+			
+			/*Phase*/
+			if(result.rows[i].phase == 'backlog') 	{result.rows[i].phase = 'Backlog'}
+			else if(result.rows[i].phase == 'discovery') {result.rows[i].phase = 'Discovery'}
+			else if(result.rows[i].phase == 'alpha') 	{result.rows[i].phase = 'Alpha'}
+			else if(result.rows[i].phase == 'beta') 		{result.rows[i].phase = 'Beta'}
+			else if(result.rows[i].phase == 'live') 		{result.rows[i].phase = 'Live'}
+			else if(result.rows[i].phase == 'completed') {result.rows[i].phase = 'Completed'}
+			else {result.rows[i].phase = 'Not set'}
+			
+			/*Category*/
+			if(result.rows[i].category == 'cap') 	{result.rows[i].category = 'Developing our digital capability'}
+			else if(result.rows[i].category == 'data')	{result.rows[i].category = 'Data driven FSA'}
+			else if(result.rows[i].category == 'sm') 	{result.rows[i].category = 'Service management'}
+			else if(result.rows[i].category == 'ser') 	{result.rows[i].category = 'Digital services development and support'}
+			else if(result.rows[i].category == 'it') 	{result.rows[i].category = 'Evergreen IT'}
+			else if(result.rows[i].category == 'res') 	{result.rows[i].category = 'Protecting data and business resilience'}
+			else {result.rows[i].category = 'Not set'}
+				
+			/*Budget*/
+			if(result.rows[i].budgettype == 'admin') 	{result.rows[i].budgettype = 'Admin'}
+			else if(result.rows[i].budgettype == 'progr') 	{result.rows[i].budgettype = 'Programme'}
+			else if(result.rows[i].budgettype == 'capit') 	{result.rows[i].budgettype = 'Capital'}
+			else {result.rows[i].budgettype = 'Not set'}
+			
+			/*Directorate*/
+			if(result.rows[i].direct == 'ODD') 	{result.rows[i].direct = 'Openness Data & Digital'}
+			else if(result.rows[i].direct == 'COMMS') 	{result.rows[i].direct = 'Communications'}
+			else if(result.rows[i].direct == 'IR') 	{result.rows[i].direct = 'Incidents & Resilience'}
+			else if(result.rows[i].direct == 'FO') 	{result.rows[i].direct = 'Field Operations'}
+			else if(result.rows[i].direct == 'FP') 	{result.rows[i].direct = 'Finance & Performance'}
+			else if(result.rows[i].direct == 'FSP') 	{result.rows[i].direct = 'Food Safety Policy'}
+			else if(result.rows[i].direct == 'FSA') 	{result.rows[i].direct = 'FSA Wide'}
+			else if(result.rows[i].direct == 'NFCU') 	{result.rows[i].direct = 'National Food Crime Unit'}
+			else if(result.rows[i].direct == 'NI') 	{result.rows[i].direct = 'Northern Ireland'}
+			else if(result.rows[i].direct == 'PEOP') 	{result.rows[i].direct = 'People'}
+			else if(result.rows[i].direct == 'RC') 	{result.rows[i].direct = 'Regulatory Compliance'}
+			else if(result.rows[i].direct == 'SERD') 	{result.rows[i].direct = 'Science Evidence & Research'}
+			else if(result.rows[i].direct == 'SLG') 	{result.rows[i].direct = 'Strategy Legal & Governance'}
+			else if(result.rows[i].direct == 'WAL') 	{result.rows[i].direct = 'Wales'}
+			else {result.rows[i].direct = 'Not set'}	
+			
+			/*RAG*/
+			if(result.rows[i].rag == 'gre') {result.rows[i].rag = 'Green'}
+			else if(result.rows[i].rag == 'nor') {result.rows[i].rag = 'Not set'}
+			else if(result.rows[i].rag == 'amb') {result.rows[i].rag = 'Amber'}
+			else if(result.rows[i].rag == 'red') {result.rows[i].rag = 'Red'}
+			else {result.rows[i].rag = 'Not set'}
+			}
 
 		  res.setHeader('Content-Type', 'text/csv');
 		  res.setHeader('Content-Disposition', 'attachment; filename=\"' + 'latest_projects-' + Date.now() + '.csv\"');
@@ -438,6 +495,7 @@ router.get('/download/csv', requireLogin, function(req,res){
 
 		  stringify(result.rows, { header: true })
 			.pipe(res);
+
 		})
 		.catch();
 	}
