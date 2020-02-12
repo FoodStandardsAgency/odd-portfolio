@@ -7,7 +7,7 @@ function update_portfolio(req,res) {
 	var sess = req.session;
 	
 	//Pull data from the DB to pre-populate the form
-	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp, project_size, oddlead_role, budgettype, direct from latest_projects where project_id = $1';
+	var text = 'SELECT project_id, project_name, start_date, short_desc, phase, category, subcat, rag, update, oddlead, oddlead_email, servicelead, servicelead_email, priority_main, funded, confidence, priorities, benefits, criticality, budget, spent, documents, link, rels, team, onhold, expend, hardend, actstart, dependencies, timestamp, project_size, oddlead_role, budgettype, direct, expendp, p_comp from latest_projects where project_id = $1';
 	var values = [project_id];
 
 	// Run the query
@@ -23,6 +23,10 @@ function update_portfolio(req,res) {
 		var actstart_month = result.rows[0].actstart.slice(3,5);
 		var actstart_year = result.rows[0].actstart.slice(6,10);
 		
+		var expendp_day = result.rows[0].expendp.slice(0,2);
+		var expendp_month = result.rows[0].expendp.slice(3,5);
+		var expendp_year = result.rows[0].expendp.slice(6,10);
+		
 		var expend_day = result.rows[0].expend.slice(0,2);
 		var expend_month = result.rows[0].expend.slice(3,5);
 		var expend_year = result.rows[0].expend.slice(6,10);
@@ -31,7 +35,7 @@ function update_portfolio(req,res) {
 		var hardend_month = result.rows[0].hardend.slice(3,5);
 		var hardend_year = result.rows[0].hardend.slice(6,10);
 		
-		var dates = [start_date_day, start_date_month, start_date_year, actstart_day, actstart_month, actstart_year, expend_day, expend_month, expend_year, hardend_day, hardend_month, hardend_year ]
+		var dates = [start_date_day, start_date_month, start_date_year, actstart_day, actstart_month, actstart_year, expend_day, expend_month, expend_year, hardend_day, hardend_month, hardend_year, expendp_day, expendp_month, expendp_year ]
 		
 		// handle documents
 		if(result.rows[0].documents != null && result.rows[0].documents != ''){var docs = result.rows[0].documents.split(",");}	else {var docs = '';}
