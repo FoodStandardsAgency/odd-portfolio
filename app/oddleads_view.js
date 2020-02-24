@@ -21,7 +21,7 @@ queries.current_projects()
 		
 		config.odd_leads
 		.then((oddleads) => {
-			var odd_leads = [];
+			var odd_leads_arr = [];
 			var cnt = oddleads.rowCount;
 			var i = 0;
 			
@@ -31,13 +31,13 @@ queries.current_projects()
 				var string = lead.concat(',',lead);
 				var lead_arr = string.split(",");
 
-				odd_leads.push(lead_arr);	
+				odd_leads_arr.push(lead_arr);	
 			}
 						
 			res.render('index', {
 			"data": 	nestedGroupBy(projects.rows, ['oddlead', 'phase']),
 			"counts": 	_.countBy(projects.rows, 'phase'),
-			"themes": 	odd_leads,
+			"themes": 	odd_leads_arr,
 			"phases":	config.phases,
 			"sess": req.session
 			});
