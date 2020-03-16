@@ -16,17 +16,17 @@ function nestedGroupBy(data, keys) {
 
 function odd_view(req, res) {
 	
-	console.log('In ODD leads view function')
+	//console.log('In ODD leads view function')
 
 queries.current_projects()
 	.then((projects) => {
 		
-		console.log(projects);
+		//console.log(projects);
 		
 		config.odd_leads
 		.then((oddleads) => {
 			
-			console.log(oddleads);
+			//console.log(oddleads);
 			
 			var odd_leads_arr = [];
 			var cnt = oddleads.rowCount;
