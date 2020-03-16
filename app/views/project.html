@@ -6,10 +6,10 @@
 	<div class="equalsplit2" style="padding-top:20px;width:50%; margin:0;"><p><span style="font-weight:800;">Project ID:</span> {{ data.project_id }}</p></div>
 	<div class="equalsplit2" style="padding-top:20px; width:50%; margin:0; text-align:right;"><p>
 	{% if user == 'portfolio' %}
-	<a href="/portfolio-delete/{{ data.project_id }}">Delete this project</a> | 
-	<a href="/portfolio-update/{{ data.project_id }}">Update this project</a>
+	<!--<a href="/portfolio-delete/{{ data.project_id }}">Delete this project</a> | 
+	<a href="/portfolio-update/{{ data.project_id }}">Update this project</a>-->
 	{% elif user == 'odd' or  user == 'team_leaders'%}
-	<a href="/odd-update/{{ data.project_id }}">Update this project</a>
+	<!--<a href="/odd-update/{{ data.project_id }}">Update this project</a>-->
 	{% endif%}
 	</p></div>
 	<div class="clear"></div>
