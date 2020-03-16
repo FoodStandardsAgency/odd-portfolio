@@ -218,21 +218,21 @@ function handle_form(req, res) {
 	console.log(insert_query)
 	console.log(values)
 		
-	/*queries.generic_query(insert_query, values)
+	queries.generic_query(insert_query, values)
 	.then(console.log("INSERT query run - project update or addition"))
-	.catch(e => console.error(e.stack))*/
+	.catch(e => console.error(e.stack))
 	
 	// Redirect to the project page
-	/*var url = '/projects/'.concat(project_id);
+	var url = '/projects/'.concat(project_id);
 	if (form_type == 'ptadd'){
 		// Wait for 3 seconds before redirecting - as it needs to create the page before redirecting. Without delay, it redirects to the homepage.
 		setTimeout(function () {
 			res.redirect(url)
 		}, 3000); 
 	}	
-	else {res.redirect(url)}*/
+	else {res.redirect(url)}
 	
-	res.send('It is not possible to update the portfolio at this time due to ongoing migration work.')
+	//res.send('It is not possible to update the portfolio at this time due to ongoing migration work.')
 }
 
 module.exports = handle_form;
