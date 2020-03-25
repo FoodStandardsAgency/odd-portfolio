@@ -9,9 +9,9 @@ function login(req, res) {
 	// Calculate hash
 	const prov_hash = crypto.createHash('sha256').update(password).digest('hex').toUpperCase();
 	
-	console.log('In login function')
-	console.log(user)
-	console.log(password)
+	//console.log('In login function')
+	//console.log(user)
+	//console.log(password)
 		
 	// Define queries
 	var text = 'SELECT username, pass_hash, access_group from users where username = $1';
@@ -21,28 +21,28 @@ function login(req, res) {
 	queries.generic_query(text, values)
 	.then((result) => {
 
-	console.log(result)
+	//console.log(result)
 		if(result.rowCount == 1){
 			if(result.rows[0].pass_hash == prov_hash){
 				req.session.user = result.rows[0].username;
 				req.session.group = result.rows[0].access_group;
 				req.session.login = 'yes';
 				
-				console.log(prov_hash)
-				console.log(result.rows[0].pass_hash)
+				//console.log(prov_hash)
+				//console.log(result.rows[0].pass_hash)
 
 				res.redirect('/');
 				res.end();
 				}
 			else {
 				req.session.destroy;
-				console.log('couldnt log in')
+				//console.log('couldnt log in')
 				res.redirect('/login');
 				res.end();
 			}
 		}
 		else {
-			console.log('no result')
+			//console.log('no result')
 			req.session.destroy;
 			res.redirect('/login');
 			res.end();
