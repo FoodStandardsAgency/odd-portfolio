@@ -103,8 +103,7 @@ function handle_form(req, res) {
 	// Calculate priority group
 	var pgroup = '';
 	if(parseInt(priority,10) >= 15) 		{var pgroup = 'high';}
-	else if(parseInt(priority,10) >= 10) 	{var pgroup = "medium-high";}
-	else if(parseInt(priority,10) >= 5)		{var pgroup = "medium-low";}
+	else if(parseInt(priority,10) >= 8) 	{var pgroup = "medium";}
 	else 									{var pgroup = "low";}
 	
 	// Handle empty proportion fields
