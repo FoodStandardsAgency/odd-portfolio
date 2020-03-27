@@ -20,7 +20,7 @@ const phases_map = [
 
 const priorities_order =[
 ['high','High'],
-['medium-', 'Medium'],
+['medium', 'Medium'],
 ['low', 'Low']
 ];
 
