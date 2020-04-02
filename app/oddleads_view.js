@@ -26,7 +26,7 @@ queries.current_projects()
 		config.odd_leads
 		.then((oddleads) => {
 			
-			console.log(oddleads);
+			//console.log(oddleads);
 			
 			var odd_leads_arr = [];
 			var cnt = oddleads.rowCount;
@@ -41,9 +41,9 @@ queries.current_projects()
 				odd_leads_arr.push(lead_arr);	
 			}
 			
-			console.log(odd_leads_arr);
-			console.log("----------------------");
-			console.log(nestedGroupBy(projects.rows, ['oddlead', 'phase']);
+			//console.log(odd_leads_arr);
+			//console.log("----------------------");
+			//console.log(nestedGroupBy(projects.rows, ['oddlead', 'phase']);
 						
 			res.render('index', {
 			"data": 	nestedGroupBy(projects.rows, ['oddlead', 'phase']),
