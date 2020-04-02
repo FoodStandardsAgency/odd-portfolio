@@ -21,12 +21,12 @@ function odd_view(req, res) {
 queries.current_projects()
 	.then((projects) => {
 		
-		//console.log(projects);
+		console.log(projects);
 		
 		config.odd_leads
 		.then((oddleads) => {
 			
-			//console.log(oddleads);
+			console.log(oddleads);
 			
 			var odd_leads_arr = [];
 			var cnt = oddleads.rowCount;
