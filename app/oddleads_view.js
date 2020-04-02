@@ -21,7 +21,7 @@ function odd_view(req, res) {
 queries.current_projects()
 	.then((projects) => {
 		
-		console.log(projects);
+		//console.log(projects);
 		
 		config.odd_leads
 		.then((oddleads) => {
@@ -40,6 +40,10 @@ queries.current_projects()
 
 				odd_leads_arr.push(lead_arr);	
 			}
+			
+			console.log(odd_leads_arr);
+			console.log("----------------------");
+			console.log(nestedGroupBy(projects.rows, ['oddlead', 'phase']);
 						
 			res.render('index', {
 			"data": 	nestedGroupBy(projects.rows, ['oddlead', 'phase']),
