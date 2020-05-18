@@ -181,6 +181,15 @@
 
 			{% endif %}
 			
+			{% if data.servicelead %}
+			<h3 class="heading-small">Delivery manager</h3>
+
+			<p>
+			{{ data.servicelead | safe }}<br />
+			<a href="mailto:{{ data.servicelead_email }}">{{ data.servicelead_email | safe}}</a>
+			</p>
+			{% endif %}
+			
 			{% if dates[10] or dates[11] or dates[12] or dates[13] or dates [14] or comp %}
 			<br /><h3 class="heading-small">Key dates</h3>
 			<p>
