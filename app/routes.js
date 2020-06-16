@@ -451,7 +451,7 @@ router.get('/download/csv', requireLogin, function(req,res){
 			/*Category*/
 			if(result.rows[i].category == 'cap') 	{result.rows[i].category = 'Developing our digital capability'}
 			else if(result.rows[i].category == 'data')	{result.rows[i].category = 'Data driven FSA'}
-			else if(result.rows[i].category == 'sm') 	{result.rows[i].category = 'Service management'}
+			else if(result.rows[i].category == 'sm') 	{result.rows[i].category = 'IT Service management'}
 			else if(result.rows[i].category == 'ser') 	{result.rows[i].category = 'Digital services development and support'}
 			else if(result.rows[i].category == 'it') 	{result.rows[i].category = 'Evergreen IT'}
 			else if(result.rows[i].category == 'res') 	{result.rows[i].category = 'Protecting data and business resilience'}
