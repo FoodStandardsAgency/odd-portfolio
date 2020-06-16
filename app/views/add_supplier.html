@@ -31,6 +31,10 @@
 
 			</form>
 			
+			{% if msg %}
+			<p style="margin-left:2%;">{{ msg | safe}}</p>
+			{% endif %}
+			
 			<br /><hr /><br />
 			
 			{% if cnt > 0 %}
