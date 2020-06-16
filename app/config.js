@@ -7,7 +7,7 @@ const categories_map = [
 ['ser', 'Digital services development and support'],
 ['it', 'Evergreen IT'],
 ['res', 'Protecting data and business resilience'],
-['sm', 'Service Management improvements']
+['sm', 'IT Service improvements']
 ]
 
 const phases_map = [
