@@ -66,137 +66,18 @@ router.get('/log-out', (req, res) => {
 // SUPPLIER ACCOUNT
 //-------------------------------------------------------------------
 
-router.get('/add-supplier', requireLogin, function (req, res) {
-	if(req.session.user == 'portfolio') {render_add_supplier(req,res)}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-});
-
-router.post('/add-supplier', [check('user').escape()], function (req, res) {add_supplier(req,res);});
+router.get('/add-supplier', requireLogin, function (req, res) {res.redirect('/')});
 
 
 //-------------------------------------------------------------------
 // TEAMS
 //-------------------------------------------------------------------
 
-router.get('/odd_people/unmatched', requireLogin, function (req, res) {
-	if(req.session.user == 'portfolio') {
-		queries.unmatched_leads()
-		.then( (result) => {
-			res.render('odd_people_unmatched', {
-				"data": result.rows,
-				"count": result.rowCount,
-				"sess": req.session,
-			})
-		})
-		.catch();
-	}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-});
-
-router.get('/odd_people/view', requireLogin, function(req,res){
-	if(req.session.user == 'portfolio') {
-		queries.odd_people()
-		.then( (result) => {
-			
-			if(result.rowCount >0){
-				res.render('odd_people_all', {
-					"data": nestedGroupBy(result.rows, ['g6team']),
-					"count": result.rowCount,
-					"teams": config.teams,
-					"sess": req.session,
-				})
-			}
-			else {res.redirect('/')}
-		})
-		.catch();
-	}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-})
-
-router.get('/odd_people/add', requireLogin, function (req, res) {
-	if(req.session.user == 'portfolio') {res.render('add_odd_person', {"msg":"Add", "action":"/add-odd"})}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-});
-
-router.get('/odd_people/update/:id', requireLogin, function(req,res){
-	if(req.session.user == 'portfolio') {
-	var text = 'select * from odd_people where id = $1'
-	var values = [req.params.id]
-	
-	queries.generic_query(text,values)
-	.then( (result) => {
-		
-		if (result.rowCount == 1) {
-		res.render('add_odd_person',{"data":result.rows[0], "msg":"Update", "action":"/edit-odd"})
-		}
-		
-		else res.render('add_odd_person',{"msg":"Add"})
-	})
-	.catch();
-	}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-	})
-	
-	
-router.get('/odd_people/delete/:id', requireLogin, function(req,res){
-	if(req.session.user == 'portfolio') {
-	var text = 'select * from odd_people where id = $1';
-	var values = [req.params.id]
-	
-	queries.generic_query(text,values)
-	.then( (result) =>{
-	
-	if (result.rowCount = 1){
-			res.render('odd_people_delete_conf', {"data":result.rows[0]})
-		}
-	else res.redirect('/');
-	})
-	.catch()
-	}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-})
-
-router.post('/add-odd', requireLogin, function(req,res){
-	var surname 	= xss(req.body.surname)
-	var firstname 	= xss(req.body.firstname)
-	var email		= xss(req.body.email)
-	var g6team		= xss(req.body.g6team)
-	
-	var values = [surname, firstname,  email, g6team];
-	var text = 'insert into odd_people (surname, firstname, email, g6team) values ($1, $2, $3, $4)';
-	
-	queries.generic_query(text, values).then();
-	
-	setTimeout(function () {res.redirect('/odd_people/view')}, 1000); 
-	
-});
-
-router.post('/edit-odd', requireLogin, function(req,res) {
-	var surname 	= xss(req.body.surname)
-	var firstname 	= xss(req.body.firstname)
-	var email		= xss(req.body.email)
-	var g6team		= xss(req.body.g6team)
-	var recordid	= xss(req.body.recordid)
-
-	var values = [surname, firstname,  email, g6team, recordid];
-	var text = 'UPDATE odd_people set surname=$1, firstname=$2, email=$3, g6team=$4 where id = $5';
-
-	queries.generic_query(text,values).then(console.log("update query run"));
-	
-	setTimeout(function () {res.redirect('/odd_people/view')}, 1000); 
-
-})
-
-router.post('/delete-odd', requireLogin, function(req,res){
-	var text = 'delete from odd_people where id = $1'
-	var values= [req.body.recordid]
-	
-	queries.generic_query(text,values).then();
-	
-	setTimeout(function () {res.redirect('/odd_people/view')}, 1000); 
-	
-})
-
+router.get('/odd_people/unmatched', requireLogin, function (req, res) {res.redirect('/')});
+router.get('/odd_people/view', requireLogin, function (req, res) {res.redirect('/')})
+router.get('/odd_people/add', requireLogin, function (req, res) {res.redirect('/')});
+router.get('/odd_people/update/:id', requireLogin, function (req, res) {res.redirect('/')})
+router.get('/odd_people/delete/:id', requireLogin, function (req, res) {res.redirect('/')})
 
 
 //-------------------------------------------------------------------
@@ -342,34 +223,18 @@ router.get('/odd-update/:project_id', requireLogin, (req, res) => {
 	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
 });
 
-//-------------------------------------------------------------------
-// BULK UPLOADS
-//-------------------------------------------------------------------
-const upload 			= multer({ dest: 'tmp/csv/' });
-
-router.get('/upload-test', requireLogin, (req, res) => {
-	if(req.session.user == 'portfolio'){res.render('upload', {"title":"Test bulk upload", "post":"upload-test",});}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-});
-
-router.get('/upload', requireLogin, (req, res) => {
-	if(req.session.user == 'portfolio'){res.render('upload', {"title":"Bulk upload", "post":"upload",});}
-	else {res.render('error_page', {message: 'You are not authorised to view this page'});}
-});
-
-router.post('/upload-test', upload.single('file'), function (req, res) { bulk(req, res, 'test_projects'); });
-router.post('/upload', 		upload.single('file'), function (req, res) { bulk(req, res, 'projects'); });
-
 
 //-------------------------------------------------------------------
 // ADD/UPDATE PROJECTS - handle form submissions
 //-------------------------------------------------------------------
-router.post('/process-project-form', requireLogin, function (req, res) { handle_form(req, res); });
+
+// Removed for migration
 	
 //-------------------------------------------------------------------
 // DELETE PROJECTS - handle form submissions
 //-------------------------------------------------------------------	
-router.post('/delete_project_process', requireLogin, function (req, res) {handle_delete(req, res)});
+
+// Removed for migrtion
 
 //-------------------------------------------------------------------
 // Export PowerBI views
